@@ -1,292 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZipSite — Automated Portfolio Strategy</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZipSite — AI-Curated Portfolios for Talent & Agencies</title>
+  <meta name="description" content="ZipSite refines talent bios with fast AI, standardizes stats, and delivers agency-ready portfolios across PDF and live web experiences.">
+  <link rel="canonical" href="https://zipsite.example.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-      color-scheme: light;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
-    }
-    .font-display {
-      font-family: 'Playfair Display', serif;
-    }
-    .nav-blur {
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      background: rgba(248, 250, 252, 0.85);
-    }
-    .button-primary {
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    }
-    .button-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 35px -20px rgba(37, 99, 235, 0.8);
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in[data-visible="true"] {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .mobile-menu {
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-    .mobile-menu.hidden {
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    .mobile-menu.visible {
-      pointer-events: auto;
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/global.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ZipSite",
+    "url": "https://zipsite.example.com",
+    "description": "AI-curated portfolios for talent and agencies",
+    "logo": "https://zipsite.example.com/assets/logo.svg",
+    "sameAs": [
+      "https://www.instagram.com/zipsite",
+      "https://www.linkedin.com/company/zipsite"
+    ]
+  }
+  </script>
 </head>
-<body class="antialiased">
-  <header class="fixed top-0 inset-x-0 z-50 border-b border-slate-200/70 nav-blur">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-      <a href="index.html" class="text-lg font-semibold tracking-[0.2em] uppercase">ZipSite</a>
-      <nav class="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
-        <a href="#vision" class="hover:text-slate-900 transition">Vision</a>
-        <a href="#technology" class="hover:text-slate-900 transition">Technology</a>
-        <a href="#journey" class="hover:text-slate-900 transition">Flow</a>
-        <a href="#tiers" class="hover:text-slate-900 transition">Plans</a>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container inner">
+      <a class="brand" href="/">ZipSite</a>
+      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+      <nav class="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="/features.html">Features</a></li>
+          <li><a href="/how.html">How It Works</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/demo.html">Demo</a></li>
+          <li><a href="/press.html">Press</a></li>
+          <li><a href="/legal.html">Legal</a></li>
+        </ul>
       </nav>
-      <div class="hidden items-center gap-3 md:flex">
-        <a href="application.html" class="text-sm font-medium text-slate-600 hover:text-slate-900">Apply</a>
-        <a href="#" class="button-primary rounded-full border border-slate-900 px-5 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-white">Login</a>
+      <div class="mobile-nav-panel" id="mobileNav" hidden>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/features.html">Features</a></li>
+          <li><a href="/how.html">How It Works</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/demo.html">Demo</a></li>
+          <li><a href="/press.html">Press</a></li>
+          <li><a href="/legal.html">Legal</a></li>
+          <li><a class="button button-primary" href="/apply/">Apply</a></li>
+        </ul>
       </div>
-      <button id="mobile-nav-toggle" class="md:hidden" aria-label="Open navigation">
-        <span class="block h-0.5 w-6 bg-slate-900"></span>
-        <span class="mt-1 block h-0.5 w-6 bg-slate-900"></span>
-        <span class="mt-1 block h-0.5 w-6 bg-slate-900"></span>
-      </button>
-    </div>
-    <div id="mobile-menu" class="mobile-menu hidden absolute inset-x-0 top-full bg-white px-6 pb-6 shadow-xl md:hidden">
-      <nav class="flex flex-col gap-4 pt-4 text-sm font-medium text-slate-700">
-        <a href="#vision" class="transition hover:text-slate-900">Vision</a>
-        <a href="#technology" class="transition hover:text-slate-900">Technology</a>
-        <a href="#journey" class="transition hover:text-slate-900">Flow</a>
-        <a href="#tiers" class="transition hover:text-slate-900">Plans</a>
-        <a href="application.html" class="transition hover:text-slate-900">Apply</a>
-        <a href="#" class="transition hover:text-slate-900">Login</a>
-      </nav>
+      <a class="button button-secondary" href="/apply/">Apply</a>
     </div>
   </header>
-
-  <main class="pt-32">
-    <section class="mx-auto max-w-6xl px-6 pb-24">
-      <div class="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end">
-        <div class="fade-in" data-visible="false">
-          <p class="text-sm uppercase tracking-[0.5em] text-slate-500">Automated Portfolio Strategy</p>
-          <h1 class="mt-6 text-5xl font-display leading-[1.05] text-slate-900 md:text-6xl">
-            Curated model portfolios. Delivered at AI speed.
-          </h1>
-          <p class="mt-6 max-w-xl text-base text-slate-600">
-            ZipSite pairs editorial-grade design with a Groq-powered AI curator. We translate raw talent submissions into professional, agency-ready stories in seconds.
-          </p>
-          <div class="mt-10 flex flex-wrap items-center gap-4">
-            <a href="application.html" class="button-primary rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Start Application</a>
-            <a href="#vision" class="rounded-full border border-slate-200 px-7 py-3 text-sm font-semibold text-slate-900 transition hover:border-slate-900">View the Vision</a>
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy motion-reveal">
+          <span class="badge">Automated portfolio strategy</span>
+          <h1>Editorial polish. AI speed.</h1>
+          <p>ZipSite refines raw talent submissions into monochrome, agency-ready portfolios — instantly curated, perfectly consistent, trusted by booking directors.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/comp-card/">Start Free PDF</a>
+            <a class="button button-secondary" href="/demo.html">See Live Demo</a>
           </div>
         </div>
-        <div class="relative fade-in" data-visible="false">
-          <div class="aspect-[3/4] overflow-hidden rounded-[32px] border border-slate-200 shadow-[0_40px_70px_-50px_rgba(15,23,42,0.45)]">
-            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Editorial model" class="h-full w-full object-cover" />
-          </div>
-          <div class="absolute -bottom-10 left-1/2 hidden w-64 -translate-x-1/2 rounded-3xl border border-slate-100 bg-white/80 p-5 shadow-xl backdrop-blur-sm md:block">
-            <p class="text-xs uppercase tracking-[0.4em] text-slate-500">Powered by Groq</p>
-            <p class="mt-3 text-sm text-slate-600">Llama 3 8B curates, standardizes, and narrates the story your agents need to feel confident.</p>
-          </div>
+        <figure class="hero-media motion-reveal" data-delay="120">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" alt="Editorial portrait of talent" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="section-features">
+      <div class="container">
+        <div class="section-heading motion-reveal">
+          <h2 id="section-features">The consistent portfolio every agency expects</h2>
+          <p>ZipSite combines precise AI editing with an editorial template system. Talent submit once — the platform delivers a polished comp card and a live portfolio that stays on brand.</p>
+        </div>
+        <div class="grid cols-3">
+          <article class="card motion-reveal" data-delay="40">
+            <h3>Groq-powered curation</h3>
+            <p>The Brain rewrites bios in seconds, cleans measurements, and applies a consistent tone that speaks the language of scouts.</p>
+          </article>
+          <article class="card motion-reveal" data-delay="80">
+            <h3>Portfolio storefront</h3>
+            <p>One responsive template, thousands of profiles. Your roster looks cohesive across mobile, desktop, and print.</p>
+          </article>
+          <article class="card motion-reveal" data-delay="120">
+            <h3>Frictionless delivery</h3>
+            <p>Send a PDF comp card for free or unlock a $9.99/mo live link with booking CTAs, reels, and analytics.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="vision" class="border-y border-slate-200 bg-white/60 py-24">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="grid gap-16 md:grid-cols-2">
-          <div class="fade-in" data-visible="false">
-            <h2 class="font-display text-4xl text-slate-900">A premium interface for the next generation of talent.</h2>
-          </div>
-          <div class="fade-in" data-visible="false">
-            <p class="text-lg text-slate-600">We merge agency-grade aesthetics with automated precision. Every ZipSite portfolio is crafted to mirror the sophistication of New York's leading agencies, without the manual lift.</p>
-            <div class="mt-10 grid gap-6 md:grid-cols-2">
-              <div class="rounded-3xl border border-slate-200/70 p-6 shadow-sm">
-                <h3 class="font-display text-xl text-slate-900">Editorial Craft</h3>
-                <p class="mt-3 text-sm text-slate-600">Playfair Display headlines and Inter body type strike the balance between timeless luxury and modern clarity.</p>
-              </div>
-              <div class="rounded-3xl border border-slate-200/70 p-6 shadow-sm">
-                <h3 class="font-display text-xl text-slate-900">AI Precision</h3>
-                <p class="mt-3 text-sm text-slate-600">Groq's high-speed AI curates bios, stats, and narratives instantly, guaranteeing consistency across every profile.</p>
-              </div>
-            </div>
-          </div>
+    <section class="section" aria-labelledby="section-steps">
+      <div class="container">
+        <div class="section-heading motion-reveal">
+          <h2 id="section-steps">Capture. Curate. Present.</h2>
+          <p>Three automated steps carry talent from application to agency-ready portfolio without manual formatting or back-and-forth.</p>
+        </div>
+        <div class="steps">
+          <article class="motion-reveal">
+            <span class="step-number">01</span>
+            <h3>Capture</h3>
+            <p>Talent submit vitals, bio, and imagery through a guided flow with smart validation and drag-and-drop uploads.</p>
+          </article>
+          <article class="motion-reveal" data-delay="80">
+            <span class="step-number">02</span>
+            <h3>Curate</h3>
+            <p>The Brain rewrites bios, standardizes stats, and tags imagery so your team always receives consistent data.</p>
+          </article>
+          <article class="motion-reveal" data-delay="120">
+            <span class="step-number">03</span>
+            <h3>Present</h3>
+            <p>The storefront template renders a monochrome portfolio, comp card PDF, and live pro site in seconds.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="technology" class="mx-auto max-w-6xl px-6 py-24">
-      <div class="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
-        <div class="fade-in" data-visible="false">
-          <p class="text-sm uppercase tracking-[0.5em] text-slate-500">The Brain</p>
-          <h2 class="mt-4 font-display text-4xl text-slate-900">AI curation that thinks like a booker.</h2>
-          <p class="mt-6 text-base text-slate-600">Our Groq-powered curator refines every submission. Informal bios become confident third-person narratives. Height, measurements, and key stats snap into clean, standardized formats.</p>
-          <ul class="mt-6 space-y-4 text-sm text-slate-600">
-            <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-slate-900"></span> Instant rewrites tuned for editorial voice.</li>
-            <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-slate-900"></span> Accurate standardization across height, measurements, and locations.</li>
-            <li class="flex gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-slate-900"></span> Consistency that agencies trust at scale.</li>
-          </ul>
+    <section class="section" aria-labelledby="section-demo">
+      <div class="container">
+        <div class="section-heading motion-reveal">
+          <h2 id="section-demo">Board-ready discovery</h2>
+          <p>Browse talent alphabetically with cinematic imagery and subtle motion. ZipSite gives agencies the wayfinding they expect.</p>
         </div>
-        <div class="fade-in" data-visible="false">
-          <p class="text-sm uppercase tracking-[0.5em] text-slate-500">The Storefront</p>
-          <h2 class="mt-4 font-display text-4xl text-slate-900">One template. Ten thousand portfolios.</h2>
-          <p class="mt-6 text-base text-slate-600">We built a single, dynamic showcase that renders beautifully for every talent. ZipSite delivers cinematic imagery, sharp typography, and the polish of a bespoke agency site without the overhead.</p>
-          <div class="mt-10 grid gap-6 sm:grid-cols-2">
-            <div class="rounded-3xl border border-slate-200/80 p-6 shadow-sm">
-              <p class="text-xs uppercase tracking-[0.4em] text-slate-500">Free Tier</p>
-              <h3 class="mt-3 font-display text-2xl text-slate-900">PDF Comp Card</h3>
-              <p class="mt-3 text-sm text-slate-600">Download an agency-ready comp card watermarked with ZipSite's seal of refinement.</p>
-            </div>
-            <div class="rounded-3xl border border-slate-200/80 p-6 shadow-sm">
-              <p class="text-xs uppercase tracking-[0.4em] text-slate-500">Pro Tier</p>
-              <h3 class="mt-3 font-display text-2xl text-slate-900">Live Portfolio</h3>
-              <p class="mt-3 text-sm text-slate-600">A polished portfolio site, hosted and maintained. No watermark, video-ready, and always on.</p>
-            </div>
-          </div>
+        <div class="board-index motion-reveal" role="tablist" aria-label="Talent index">
+          <button class="active" data-letter="all" role="tab" aria-selected="true">All</button>
+          <button data-letter="a" role="tab">A</button>
+          <button data-letter="b" role="tab">B</button>
+          <button data-letter="c" role="tab">C</button>
+          <button data-letter="d" role="tab">D</button>
+          <button data-letter="e" role="tab">E</button>
+          <button data-letter="f" role="tab">F</button>
+          <button data-letter="g" role="tab">G</button>
+          <button data-letter="h" role="tab">H</button>
+          <button data-letter="i" role="tab">I</button>
+          <button data-letter="j" role="tab">J</button>
+          <button data-letter="k" role="tab">K</button>
+          <button data-letter="l" role="tab">L</button>
+          <button data-letter="m" role="tab">M</button>
+          <button data-letter="n" role="tab">N</button>
+          <button data-letter="o" role="tab">O</button>
+          <button data-letter="p" role="tab">P</button>
+          <button data-letter="q" role="tab">Q</button>
+          <button data-letter="r" role="tab">R</button>
+          <button data-letter="s" role="tab">S</button>
+          <button data-letter="t" role="tab">T</button>
+          <button data-letter="u" role="tab">U</button>
+          <button data-letter="v" role="tab">V</button>
+          <button data-letter="w" role="tab">W</button>
+          <button data-letter="x" role="tab">X</button>
+          <button data-letter="y" role="tab">Y</button>
+          <button data-letter="z" role="tab">Z</button>
         </div>
-      </div>
-    </section>
-
-    <section id="journey" class="bg-white py-24">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="fade-in" data-visible="false">
-          <p class="text-sm uppercase tracking-[0.5em] text-slate-500">Automated Journey</p>
-          <h2 class="mt-4 font-display text-4xl text-slate-900">From raw submission to agency-ready in four steps.</h2>
-        </div>
-        <div class="mt-14 grid gap-8 md:grid-cols-4">
-          <div class="fade-in rounded-3xl border border-slate-200/80 p-6 text-slate-600 shadow-sm" data-visible="false">
-            <p class="text-xs uppercase tracking-[0.4em] text-slate-500">01 Capture</p>
-            <h3 class="mt-4 font-display text-2xl text-slate-900">Upload</h3>
-            <p class="mt-3 text-sm">Talent enters essentials, tags imagery, and sets the tone for the narrative.</p>
-          </div>
-          <div class="fade-in rounded-3xl border border-slate-200/80 p-6 text-slate-600 shadow-sm" data-visible="false">
-            <p class="text-xs uppercase tracking-[0.4em] text-slate-500">02 Curate</p>
-            <h3 class="mt-4 font-display text-2xl text-slate-900">Groq Refine</h3>
-            <p class="mt-3 text-sm">Groq's Llama 3 8B rewrites bios and polishes stats in seconds.</p>
-          </div>
-          <div class="fade-in rounded-3xl border border-slate-200/80 p-6 text-slate-600 shadow-sm" data-visible="false">
-            <p class="text-xs uppercase tracking-[0.4em] text-slate-500">03 Store</p>
-            <h3 class="mt-4 font-display text-2xl text-slate-900">Profile</h3>
-            <p class="mt-3 text-sm">The refined profile is saved, organized, and ready to deliver.</p>
-          </div>
-          <div class="fade-in rounded-3xl border border-slate-200/80 p-6 text-slate-600 shadow-sm" data-visible="false">
-            <p class="text-xs uppercase tracking-[0.4em] text-slate-500">04 Deliver</p>
-            <h3 class="mt-4 font-display text-2xl text-slate-900">Showtime</h3>
-            <p class="mt-3 text-sm">A comp card or a live site, both polished with ZipSite's signature finish.</p>
-          </div>
+        <div class="board-grid" id="boardGrid" aria-live="polite">
+          <!-- Talent cards injected by gallery.js -->
         </div>
       </div>
     </section>
 
-    <section id="tiers" class="mx-auto max-w-6xl px-6 py-24">
-      <div class="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
-        <div class="max-w-xl fade-in" data-visible="false">
-          <p class="text-sm uppercase tracking-[0.5em] text-slate-500">Plans</p>
-          <h2 class="mt-4 font-display text-4xl text-slate-900">Two outcomes. One consistent standard.</h2>
-          <p class="mt-6 text-base text-slate-600">Both tiers draw from the same curated profile. Upgrade to unlock the live digital storefront while keeping the integrity ZipSite guarantees.</p>
-        </div>
-        <div class="grid gap-6 sm:grid-cols-2 lg:max-w-2xl">
-          <div class="fade-in rounded-3xl border border-slate-200/80 bg-white p-8 text-slate-700 shadow-sm" data-visible="false">
-            <p class="text-xs uppercase tracking-[0.4em] text-slate-500">Free Tier</p>
-            <h3 class="mt-4 font-display text-3xl text-slate-900">PDF Comp Card</h3>
-            <p class="mt-4 text-sm">Curated stats, editorial bio, and watermarked assurance. Download instantly.</p>
-            <a href="application.html" class="mt-8 inline-flex rounded-full border border-slate-900 px-6 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-white">Create yours</a>
-          </div>
-          <div class="fade-in rounded-3xl border border-slate-200/80 bg-slate-900 p-8 text-slate-100 shadow-lg" data-visible="false">
-            <p class="text-xs uppercase tracking-[0.4em] text-white/70">Pro Tier</p>
-            <h3 class="mt-4 font-display text-3xl text-white">$9.99/mo Live Portfolio</h3>
-            <p class="mt-4 text-sm text-slate-100/80">Custom link, video reels, watermark removed, always current.</p>
-            <a href="application.html" class="mt-8 inline-flex rounded-full bg-white px-6 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200">Upgrade path</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-y border-slate-200 bg-white py-24">
-      <div class="mx-auto max-w-5xl px-6 text-center">
-        <div class="fade-in" data-visible="false">
-          <p class="text-sm uppercase tracking-[0.5em] text-slate-500">Confidence</p>
-          <h2 class="mt-4 font-display text-4xl text-slate-900">Ready to deliver your next model in record time?</h2>
-          <p class="mt-6 text-base text-slate-600">Apply today to experience a submission flow that feels tailored, fast, and flawlessly on-brand.</p>
-          <a href="application.html" class="button-primary mt-10 inline-flex rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Begin the application</a>
+    <section class="cta-banner motion-reveal">
+      <div class="container">
+        <h2>Ready to refine your roster?</h2>
+        <p class="muted">Launch a polished comp card in minutes, then unlock a pro site when you’re ready to scale.</p>
+        <div class="hero-actions" style="justify-content:center;">
+          <a class="button button-primary" href="/apply/">Begin Application</a>
+          <a class="button button-secondary" href="/demo.html">Explore the demo</a>
         </div>
       </div>
     </section>
   </main>
-
-  <footer class="bg-slate-950 py-12 text-slate-200">
-    <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 md:flex-row md:items-center md:justify-between">
+  <footer class="site-footer">
+    <div class="container footer-grid">
       <div>
-        <p class="text-sm uppercase tracking-[0.5em] text-slate-500">ZipSite</p>
-        <p class="mt-4 max-w-lg text-sm text-slate-400">Automated curation for premium portfolios. Built for agencies and talent who expect editorial-grade presentation.</p>
+        <div class="brand">ZipSite</div>
+        <p class="footer-small">Editorial-grade portfolios, curated by AI.</p>
       </div>
-      <div class="flex flex-col items-start gap-3 text-sm text-slate-400 md:flex-row md:items-center md:gap-6">
-        <a href="template.html" class="hover:text-white transition">Portfolio Template</a>
-        <a href="application.html" class="hover:text-white transition">Apply</a>
-        <a href="#" class="hover:text-white transition">Privacy</a>
-      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/press.html">Press</a></li>
+          <li><a href="/legal.html">Legal</a></li>
+          <li><a href="mailto:press@zipsite.com">press@zipsite.com</a></li>
+        </ul>
+      </nav>
     </div>
-    <p class="mt-12 text-center text-xs text-slate-500">© 2025 ZipSite. Refined by AI. Crafted for agency confidence.</p>
   </footer>
-
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.dataset.visible = 'true';
-        }
-      });
-    }, {
-      threshold: 0.2
-    });
-
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
-    });
-
-    const toggle = document.getElementById('mobile-nav-toggle');
-    const menu = document.getElementById('mobile-menu');
-
-    toggle.addEventListener('click', () => {
-      if (menu.classList.contains('hidden')) {
-        menu.classList.remove('hidden');
-        requestAnimationFrame(() => menu.classList.add('visible'));
-      } else {
-        menu.classList.remove('visible');
-        menu.addEventListener('transitionend', () => menu.classList.add('hidden'), { once: true });
-      }
-    });
-
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        menu.classList.remove('visible');
-        menu.addEventListener('transitionend', () => menu.classList.add('hidden'), { once: true });
-      });
-    });
-  </script>
+  <script src="/scripts/gallery.js" defer></script>
+  <script src="/scripts/main.js" defer></script>
 </body>
 </html>
