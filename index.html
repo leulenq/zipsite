@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ZipSite — AI-Curated Portfolios for Talent & Agencies</title>
-  <meta name="description" content="ZipSite refines talent bios with fast AI, standardizes stats, and delivers agency-ready portfolios across PDF and live web experiences.">
-  <link rel="canonical" href="https://zipsite.example.com/">
+  <title>ZipSite — AI-Curated Editorial Portfolios</title>
+  <meta name="description" content="ZipSite refines talent applications with instant AI curation and delivers editorial-grade portfolios that agencies trust.">
+  <link rel="canonical" href="https://zipsite.example/index.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/global.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "ZipSite",
-    "url": "https://zipsite.example.com",
-    "description": "AI-curated portfolios for talent and agencies",
-    "logo": "https://zipsite.example.com/assets/logo.svg",
+    "url": "https://zipsite.example/",
+    "logo": "https://zipsite.example/assets/logo-zipsite.svg",
+    "description": "ZipSite delivers AI-curated talent portfolios for models and agencies.",
     "sameAs": [
       "https://www.instagram.com/zipsite",
       "https://www.linkedin.com/company/zipsite"
@@ -25,173 +25,336 @@
   }
   </script>
 </head>
-<body>
+<body class="page">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container inner">
-      <a class="brand" href="/">ZipSite</a>
-      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
-      <nav class="primary-nav" aria-label="Primary">
-        <ul>
-          <li><a href="/" aria-current="page">Home</a></li>
-          <li><a href="/features.html">Features</a></li>
-          <li><a href="/how.html">How It Works</a></li>
-          <li><a href="/pricing.html">Pricing</a></li>
-          <li><a href="/demo.html">Demo</a></li>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="/legal.html">Legal</a></li>
-        </ul>
+  <header class="site-header" data-component="header">
+    <div class="inner">
+      <a class="site-brand" href="index.html">
+        <img src="assets/logo-zipsite.svg" alt="ZipSite logo">
+        <span>ZipSite</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="features.html">Features</a>
+        <a href="how.html">How it Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="demo.html">Demo</a>
+        <a href="press.html">Press</a>
       </nav>
-      <div class="mobile-nav-panel" id="mobileNav" hidden>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/features.html">Features</a></li>
-          <li><a href="/how.html">How It Works</a></li>
-          <li><a href="/pricing.html">Pricing</a></li>
-          <li><a href="/demo.html">Demo</a></li>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="/legal.html">Legal</a></li>
-          <li><a class="button button-primary" href="/apply/">Apply</a></li>
-        </ul>
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="apply/index.html">Start Free PDF</a>
+        <a class="btn btn-primary" href="pricing.html#premium">Go Pro</a>
       </div>
-      <a class="button button-secondary" href="/apply/">Apply</a>
+      <button class="mobile-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <span></span>
+      </button>
     </div>
   </header>
+  <nav id="mobile-nav" class="mobile-nav" aria-hidden="true" aria-label="Mobile">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="features.html">Features</a>
+    <a href="how.html">How it Works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="demo.html">Demo</a>
+    <a href="press.html">Press</a>
+    <a href="apply/index.html">Start Free PDF</a>
+  </nav>
   <main id="main">
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy motion-reveal">
-          <span class="badge">Automated portfolio strategy</span>
-          <h1>Editorial polish. AI speed.</h1>
-          <p>ZipSite refines raw talent submissions into monochrome, agency-ready portfolios — instantly curated, perfectly consistent, trusted by booking directors.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="/comp-card/">Start Free PDF</a>
-            <a class="button button-secondary" href="/demo.html">See Live Demo</a>
+      <div class="hero-copy fade-in">
+        <span class="hero-eyebrow">Editorial polish. AI speed.</span>
+        <h1>Quiet luxury portfolios for talent agencies and the models they sign.</h1>
+        <p>Your photos. Your story. Curated in seconds. ZipSite transforms messy submissions into cinematic presentations that agencies trust instantly.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="apply/index.html">Start My Free Application</a>
+          <a class="btn btn-outline" href="demo.html">See Live Demo</a>
+        </div>
+        <a class="btn btn-ghost" href="#agencies">For Agencies ↓</a>
+      </div>
+      <div class="hero-visual fade-in" data-delay="120">
+        <div class="before" data-label="Before">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Unedited snapshot of talent">
+          <div class="details">
+            <h3>Messy Submission</h3>
+            <ul>
+              <li>“hey i’m elara. i like fashion + travel. 5ft11 maybe? based in ny/la sometimes.”</li>
+              <li>Unlabeled photos from camera roll</li>
+              <li>No consistent comp card</li>
+            </ul>
           </div>
         </div>
-        <figure class="hero-media motion-reveal" data-delay="120">
-          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" alt="Editorial portrait of talent" loading="lazy" decoding="async">
-        </figure>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="section-features">
-      <div class="container">
-        <div class="section-heading motion-reveal">
-          <h2 id="section-features">The consistent portfolio every agency expects</h2>
-          <p>ZipSite combines precise AI editing with an editorial template system. Talent submit once — the platform delivers a polished comp card and a live portfolio that stays on brand.</p>
-        </div>
-        <div class="grid cols-3">
-          <article class="card motion-reveal" data-delay="40">
-            <h3>Groq-powered curation</h3>
-            <p>The Brain rewrites bios in seconds, cleans measurements, and applies a consistent tone that speaks the language of scouts.</p>
-          </article>
-          <article class="card motion-reveal" data-delay="80">
-            <h3>Portfolio storefront</h3>
-            <p>One responsive template, thousands of profiles. Your roster looks cohesive across mobile, desktop, and print.</p>
-          </article>
-          <article class="card motion-reveal" data-delay="120">
-            <h3>Frictionless delivery</h3>
-            <p>Send a PDF comp card for free or unlock a $9.99/mo live link with booking CTAs, reels, and analytics.</p>
-          </article>
+        <div class="after" data-label="After">
+          <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=900&q=80" alt="Editorial portfolio shot refined by ZipSite">
+          <div class="details">
+            <div class="stats">
+              <span class="pill pill-accent">Elara K.</span>
+              <span class="pill">5' 11"</span>
+              <span class="pill">NYC • LA</span>
+              <span class="pill">Agency-ready PDF</span>
+            </div>
+            <h3>Refined by ZipSite</h3>
+            <p>Has a strong passion for editorial fashion and on-location storytelling. Experienced with runway, beauty, and travel campaigns.</p>
+            <ul>
+              <li>Standardized stats, curated by Groq-powered AI</li>
+              <li>Editorial image treatment with sequencing</li>
+              <li>Instant portfolio link + watermark-free pro upgrade</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="section-steps">
-      <div class="container">
-        <div class="section-heading motion-reveal">
-          <h2 id="section-steps">Capture. Curate. Present.</h2>
-          <p>Three automated steps carry talent from application to agency-ready portfolio without manual formatting or back-and-forth.</p>
-        </div>
-        <div class="steps">
-          <article class="motion-reveal">
-            <span class="step-number">01</span>
-            <h3>Capture</h3>
-            <p>Talent submit vitals, bio, and imagery through a guided flow with smart validation and drag-and-drop uploads.</p>
+    <section class="section fade-in" data-delay="80">
+      <div class="inner">
+        <header class="section-header">
+          <div>
+            <span class="section-eyebrow">Talent Journey</span>
+            <h2 class="section-title">Upload → AI Curates → Present</h2>
+          </div>
+          <p class="section-body">Become the version agents want. ZipSite pairs cinematic design with high-speed AI to clean bios, standardize stats, and deliver one consistent portfolio every agency recognizes.</p>
+        </header>
+        <div class="journey-grid">
+          <article class="journey-step" data-step="01">
+            <h3>Upload</h3>
+            <p>Drop your photos, measurements, and raw bio. Drag-and-drop or mobile uploads—no complex requirements.</p>
           </article>
-          <article class="motion-reveal" data-delay="80">
-            <span class="step-number">02</span>
-            <h3>Curate</h3>
-            <p>The Brain rewrites bios, standardizes stats, and tags imagery so your team always receives consistent data.</p>
+          <article class="journey-step" data-step="02">
+            <h3>AI Curates</h3>
+            <p>Groq-powered intelligence rewrites your story in a confident third-person voice, formats every stat, and tags imagery.</p>
           </article>
-          <article class="motion-reveal" data-delay="120">
-            <span class="step-number">03</span>
+          <article class="journey-step" data-step="03">
             <h3>Present</h3>
-            <p>The storefront template renders a monochrome portfolio, comp card PDF, and live pro site in seconds.</p>
+            <p>Instant comp card PDF and pro portfolio layout. Share a link or download print-ready assets in seconds.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="section-demo">
-      <div class="container">
-        <div class="section-heading motion-reveal">
-          <h2 id="section-demo">Board-ready discovery</h2>
-          <p>Browse talent alphabetically with cinematic imagery and subtle motion. ZipSite gives agencies the wayfinding they expect.</p>
-        </div>
-        <div class="board-index motion-reveal" role="tablist" aria-label="Talent index">
-          <button class="active" data-letter="all" role="tab" aria-selected="true">All</button>
-          <button data-letter="a" role="tab">A</button>
-          <button data-letter="b" role="tab">B</button>
-          <button data-letter="c" role="tab">C</button>
-          <button data-letter="d" role="tab">D</button>
-          <button data-letter="e" role="tab">E</button>
-          <button data-letter="f" role="tab">F</button>
-          <button data-letter="g" role="tab">G</button>
-          <button data-letter="h" role="tab">H</button>
-          <button data-letter="i" role="tab">I</button>
-          <button data-letter="j" role="tab">J</button>
-          <button data-letter="k" role="tab">K</button>
-          <button data-letter="l" role="tab">L</button>
-          <button data-letter="m" role="tab">M</button>
-          <button data-letter="n" role="tab">N</button>
-          <button data-letter="o" role="tab">O</button>
-          <button data-letter="p" role="tab">P</button>
-          <button data-letter="q" role="tab">Q</button>
-          <button data-letter="r" role="tab">R</button>
-          <button data-letter="s" role="tab">S</button>
-          <button data-letter="t" role="tab">T</button>
-          <button data-letter="u" role="tab">U</button>
-          <button data-letter="v" role="tab">V</button>
-          <button data-letter="w" role="tab">W</button>
-          <button data-letter="x" role="tab">X</button>
-          <button data-letter="y" role="tab">Y</button>
-          <button data-letter="z" role="tab">Z</button>
-        </div>
-        <div class="board-grid" id="boardGrid" aria-live="polite">
-          <!-- Talent cards injected by gallery.js -->
+    <div class="divider-line" aria-hidden="true"></div>
+
+    <section class="section fade-in" data-delay="120">
+      <div class="inner">
+        <header class="section-header">
+          <div>
+            <span class="section-eyebrow">Precision Features</span>
+            <h2 class="section-title">A curated pipeline from capture to booking</h2>
+          </div>
+          <p class="section-body">Quiet luxury in the UI, relentless precision behind the scenes. Every control is tuned for agency expectations.</p>
+        </header>
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Editorial Rewrite</h3>
+            <p>Your informal bio becomes a sharp, third-person summary that feels at home in an agency deck.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🧊</div>
+            <h3>Consistent Stats</h3>
+            <p>Height, measurements, and experience are standardized for scouts. No more guessing or emailing for details.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🖼️</div>
+            <h3>Cinematic Galleries</h3>
+            <p>Responsive grids with lazy-loading, soft skeletons, and hover reveals that feel like a print magazine.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Agency Controls</h3>
+            <p>Standardized submissions, invite-only access, and tracking for commissions without any inbox chaos.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">📄</div>
+            <h3>PDF Comp Card</h3>
+            <p>Dedicated 5.5 × 8.5 in export with bleed, safe zones, and a watermark that vanishes for Pro talent.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Upgrade Revenue</h3>
+            <p>Agencies earn 25% on every Pro upgrade—$5K+/year potential while offering premium scouting tools.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="cta-banner motion-reveal">
-      <div class="container">
-        <h2>Ready to refine your roster?</h2>
-        <p class="muted">Launch a polished comp card in minutes, then unlock a pro site when you’re ready to scale.</p>
-        <div class="hero-actions" style="justify-content:center;">
-          <a class="button button-primary" href="/apply/">Begin Application</a>
-          <a class="button button-secondary" href="/demo.html">Explore the demo</a>
+    <section id="premium" class="section premium fade-in" data-delay="80">
+      <div class="inner">
+        <div class="copy">
+          <span class="section-eyebrow">$9.99/mo</span>
+          <h2>Go Pro and present like a flagship campaign.</h2>
+          <p>The Premium tier unlocks a live portfolio link, watermark-free exports, motion reels, and analytics designed for agency decks.</p>
+          <ul>
+            <li>Custom URL with cinematic layout</li>
+            <li>Video reel &amp; backstage gallery</li>
+            <li>Instant PDF refresh with new imagery</li>
+            <li>Priority AI passes for fast updates</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="pricing.html">Upgrade to Premium</a>
+            <a class="btn btn-outline" href="demo.html">Preview Portfolio</a>
+          </div>
         </div>
+        <div class="mockup-frame" aria-hidden="true">
+          <img class="laptop" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80" alt="ZipSite premium portfolio on laptop">
+          <img src="https://images.unsplash.com/photo-1511288597743-08cce543b88d?auto=format&fit=crop&w=600&q=80" alt="ZipSite mobile comp card mockup">
+        </div>
+      </div>
+    </section>
+
+    <section class="section portfolio-showcase fade-in" data-delay="60">
+      <div class="inner portfolio-reel">
+        <header class="section-header">
+          <div>
+            <span class="section-eyebrow">Portfolio Showcase</span>
+            <h2 class="section-title">Editorial talent ready to book</h2>
+          </div>
+          <p class="section-body">Swipe through signature reels—each built on the same template, each with their own cinematic energy.</p>
+        </header>
+        <div class="reel-track" data-component="reel">
+          <article class="portfolio-card" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1531312267124-83afc1b1ae43?auto=format&fit=crop&w=600&q=80" alt="Elara K portfolio">
+            <div class="overlay">
+              <div>
+                <span>Runway / Editorial</span>
+                <h3>Elara K.</h3>
+              </div>
+              <a class="btn btn-outline" href="portfolio/index.html?talent=elara">View Portfolio</a>
+            </div>
+          </article>
+          <article class="portfolio-card" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Marcus J portfolio">
+            <div class="overlay">
+              <div>
+                <span>Menswear / Fitness</span>
+                <h3>Marcus J.</h3>
+              </div>
+              <a class="btn btn-outline" href="portfolio/index.html?talent=marcus">View Portfolio</a>
+            </div>
+          </article>
+          <article class="portfolio-card" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Ayla N portfolio">
+            <div class="overlay">
+              <div>
+                <span>Beauty / Editorial</span>
+                <h3>Ayla N.</h3>
+              </div>
+              <a class="btn btn-outline" href="portfolio/index.html?talent=ayla">View Portfolio</a>
+            </div>
+          </article>
+          <article class="portfolio-card" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=600&q=80" alt="Noah S portfolio">
+            <div class="overlay">
+              <div>
+                <span>Commercial / Lifestyle</span>
+                <h3>Noah S.</h3>
+              </div>
+              <a class="btn btn-outline" href="portfolio/index.html?talent=noah">View Portfolio</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="agencies" class="section agencies fade-in" data-delay="120">
+      <div class="inner agencies-grid">
+        <div class="agencies-copy">
+          <span class="section-eyebrow">For Agencies</span>
+          <h2>Stop sifting. Start scouting.</h2>
+          <p>ZipSite delivers one standardized feed across your incoming talent. Filter by alphabet, measurements, region, or availability—and collect 25% every time talent upgrades to Pro.</p>
+          <ul class="agencies-list">
+            <li>Centralized submissions curated by AI with consistent data points.</li>
+            <li>Invite scouts to review a live board with private feedback.</li>
+            <li>Earn 25% for every upgrade — $5K+/year potential per agency.</li>
+          </ul>
+          <a class="btn btn-primary" href="press.html#contact">Become a ZipSite Partner</a>
+        </div>
+        <div class="agencies-tile">
+          <h3 class="section-title" style="font-size:32px;margin-top:0;">Before → After</h3>
+          <p style="color:rgba(15,23,42,0.7);">See how a messy inbox transforms into a disciplined scouting surface.</p>
+          <table class="table" aria-label="Agency comparison">
+            <thead>
+              <tr>
+                <th scope="col">Workflow</th>
+                <th scope="col">Before ZipSite</th>
+                <th scope="col">With ZipSite</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Incoming submissions</td>
+                <td>Random emails, DMs, PDFs</td>
+                <td>Standardized entries tagged by AI</td>
+              </tr>
+              <tr>
+                <td>Portfolio quality</td>
+                <td>Mixed sizing, missing bios</td>
+                <td>Editorial layouts with precise stats</td>
+              </tr>
+              <tr>
+                <td>Agency revenue</td>
+                <td>No participation</td>
+                <td>25% recurring share on Pro upgrades</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact fade-in" data-delay="80">
+      <div class="inner contact-grid">
+        <div class="contact-intro">
+          <span class="section-eyebrow">Connect</span>
+          <h2>Quiet power, open dialogue.</h2>
+          <p>Whether you’re talent, an agency, or press, we’ll respond within one business day.</p>
+        </div>
+        <form class="contact-form" action="#" method="post">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="contact-name">Full Name</label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="form-group full">
+              <label for="contact-type">I’m Reaching Out As</label>
+              <select id="contact-type" name="type" required>
+                <option value="">Select an option</option>
+                <option value="talent">Talent</option>
+                <option value="agency">Agency</option>
+                <option value="press">Press</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" required></textarea>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit Inquiry</button>
+        </form>
       </div>
     </section>
   </main>
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="brand">ZipSite</div>
-        <p class="footer-small">Editorial-grade portfolios, curated by AI.</p>
+    <div class="inner">
+      <span>© 2025 ZipSite. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="legal.html#privacy">Privacy Policy</a>
+        <a href="legal.html#terms">Terms of Service</a>
       </div>
-      <nav aria-label="Footer">
-        <ul>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="/legal.html">Legal</a></li>
-          <li><a href="mailto:press@zipsite.com">press@zipsite.com</a></li>
-        </ul>
-      </nav>
+      <div class="social-links" aria-label="Social">
+        <a href="https://instagram.com" aria-label="Instagram">
+          <img src="assets/icons/instagram.svg" alt="Instagram icon">
+        </a>
+        <a href="https://linkedin.com" aria-label="LinkedIn">
+          <img src="assets/icons/linkedin.svg" alt="LinkedIn icon">
+        </a>
+      </div>
     </div>
   </footer>
-  <script src="/scripts/gallery.js" defer></script>
-  <script src="/scripts/main.js" defer></script>
+  <script src="scripts/main.js" defer></script>
+  <script src="scripts/gallery.js" defer></script>
 </body>
 </html>

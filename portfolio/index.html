@@ -3,176 +3,353 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Portfolio — ZipSite</title>
-  <meta name="description" content="ZipSite portfolio template showcasing AI-refined stats, editorial imagery, and booking CTAs.">
-  <link rel="canonical" href="https://zipsite.example.com/portfolio/">
+  <title>ZipSite Portfolio Template</title>
+  <meta name="description" content="Explore the ZipSite portfolio template with AI-curated bios, stats, and cinematic galleries.">
+  <link rel="canonical" href="https://zipsite.example/portfolio/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/global.css">
-  <script id="personSchema" type="application/ld+json"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/global.css">
+  <script id="portfolio-data" type="application/json">
+  {
+    "elara": {
+      "name": "Elara K.",
+      "role": "Editorial • Runway",
+      "location": "NYC / LA",
+      "height": "5' 11\"",
+      "measurements": "32 • 24 • 34",
+      "shoe": "40 EU",
+      "bio": "Has a strong passion for editorial fashion with a focus on architectural poses and cinematic storytelling. Recent highlights include campaigns for Estelle, Kith Women, and Maison Rioux.",
+      "experience": [
+        "Runway — New York Fashion Week SS25",
+        "Editorial — Silverline Magazine Cover",
+        "Campaign — Estelle Skincare Global",
+        "Commercial — Orbit Athletics FW24"
+      ],
+      "availability": "Available for NYC bookings Feb–Apr, EU May–Jun.",
+      "instagram": "https://instagram.com/elarako",
+      "portfolio": "https://zipsite.example/elara",
+      "photos": [
+        "https://images.unsplash.com/photo-1531312267124-83afc1b1ae43?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=900&q=80"
+      ],
+      "video": "https://player.vimeo.com/video/76979871?h=5c6e3a3f7b"
+    },
+    "marcus": {
+      "name": "Marcus J.",
+      "role": "Menswear • Athletic",
+      "location": "London / Berlin",
+      "height": "6' 2\"",
+      "measurements": "38 • 30 • 38",
+      "shoe": "44 EU",
+      "bio": "Combines strong athletic build with modern tailoring. Trusted for campaigns by Orum, Stature, and adidas Originals.",
+      "experience": [
+        "Campaign — Orum Outerwear SS25",
+        "Editorial — Frame Magazine",
+        "Fitness — Adidas Originals Trainer Series"
+      ],
+      "availability": "Available worldwide with two weeks notice.",
+      "instagram": "https://instagram.com/marcusmoves",
+      "portfolio": "https://zipsite.example/marcus",
+      "photos": [
+        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=900&q=80"
+      ],
+      "video": "https://player.vimeo.com/video/1084537?h=5c6e3a3f7b"
+    },
+    "ayla": {
+      "name": "Ayla N.",
+      "role": "Beauty • Commercial",
+      "location": "Paris / Marrakech",
+      "height": "5' 9\"",
+      "measurements": "34 • 25 • 36",
+      "shoe": "39 EU",
+      "bio": "Known for luminous skin work and beauty campaigns. Featured for Glow Atelier, Nura Cosmetics, and Vogue Arabia online.",
+      "experience": [
+        "Beauty — Glow Atelier Worldwide",
+        "Editorial — Vogue Arabia Online",
+        "Commercial — Nura Cosmetics SS24"
+      ],
+      "availability": "Paris-based, open to travel with notice.",
+      "instagram": "https://instagram.com/aylanova",
+      "portfolio": "https://zipsite.example/ayla",
+      "photos": [
+        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1511288597743-08cce543b88d?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?auto=format&fit=crop&w=900&q=80"
+      ],
+      "video": "https://player.vimeo.com/video/76979871?h=5c6e3a3f7b"
+    },
+    "noah": {
+      "name": "Noah S.",
+      "role": "Commercial • Lifestyle",
+      "location": "Toronto / NYC",
+      "height": "6' 0\"",
+      "measurements": "40 • 32 • 40",
+      "shoe": "43 EU",
+      "bio": "Lifestyle energy with commercial range for outdoor, travel, and tech brands. Recent work for Altitude Gear and Miles Away.",
+      "experience": [
+        "Commercial — Altitude Gear SS25",
+        "Campaign — Miles Away Travel",
+        "Digital — Stride Fitness"
+      ],
+      "availability": "Open for North America bookings.",
+      "instagram": "https://instagram.com/noahsteps",
+      "portfolio": "https://zipsite.example/noah",
+      "photos": [
+        "https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
+  }
+  </script>
 </head>
-<body>
+<body class="page">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container inner">
-      <a class="brand" href="/">ZipSite</a>
-      <nav class="primary-nav" aria-label="Primary">
-        <ul>
-          <li><a href="/demo.html">Back to demo</a></li>
-          <li><a href="/apply/">Submit profile</a></li>
-        </ul>
+  <header class="site-header" data-component="header">
+    <div class="inner">
+      <a class="site-brand" href="../index.html">
+        <img src="../assets/logo-zipsite.svg" alt="ZipSite logo">
+        <span>ZipSite</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../features.html">Features</a>
+        <a href="../how.html">How it Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../demo.html">Demo</a>
+        <a href="../press.html">Press</a>
       </nav>
-      <a class="button button-secondary" href="mailto:bookings@zipsite.com">Contact agency</a>
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="../apply/index.html">Start Free PDF</a>
+        <a class="btn btn-primary" href="../pricing.html#premium">Go Pro</a>
+      </div>
+      <button class="mobile-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <span></span>
+      </button>
     </div>
   </header>
-  <main id="main">
-    <article class="section" style="padding-top:6rem;">
-      <div class="container" id="portfolioContent">
-        <header class="motion-reveal" style="display:grid; gap:1.5rem;">
-          <div class="pill-group" id="quickStats"></div>
-          <h1 id="talentName" style="font-family:var(--font-serif); font-size:clamp(3rem,5vw,4rem); font-weight:400; margin:0;"></h1>
-          <p class="muted" id="talentLocation"></p>
-        </header>
-        <section class="gallery-grid motion-reveal" id="talentGallery" aria-label="Portfolio imagery"></section>
-        <section class="section" style="padding:3rem 0 0;" aria-labelledby="bio">
-          <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:3rem;">
-            <div>
-              <h2 id="bio" style="font-family:var(--font-serif); font-weight:400;">Bio</h2>
-              <p class="muted" id="talentBio"></p>
+  <nav id="mobile-nav" class="mobile-nav" aria-hidden="true" aria-label="Mobile">
+    <a href="../index.html">Home</a>
+    <a href="../features.html">Features</a>
+    <a href="../how.html">How it Works</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../demo.html">Demo</a>
+    <a href="../press.html">Press</a>
+    <a href="../apply/index.html">Start Free PDF</a>
+  </nav>
+  <main id="main" class="section" style="padding-top:120px;">
+    <div class="inner" data-component="portfolio">
+      <div class="meta-strip">
+        <span class="badge badge-accent">AI Curated</span>
+        <span data-field="role">Editorial • Runway</span>
+        <span data-field="location">NYC / LA</span>
+      </div>
+      <header style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:32px 0;">
+        <div>
+          <h1 class="section-title" style="margin:0;font-size:52px;">Elara K.</h1>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;">
+            <span class="pill" data-field="height">5' 11"</span>
+            <span class="pill" data-field="measurements">32 • 24 • 34</span>
+            <span class="pill" data-field="shoe">40 EU</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;position:sticky;top:calc(var(--header-height) + 24px);">
+          <a class="btn btn-outline" href="../comp-card/index.html?talent=elara" data-cta="download">Download PDF</a>
+          <a class="btn btn-primary" href="mailto:bookings@zipsite.co" data-cta="contact">Contact</a>
+        </div>
+      </header>
+      <section style="display:grid;grid-template-columns:repeat(12,1fr);gap:24px;">
+        <div style="grid-column:span 7;display:grid;gap:18px;">
+          <article class="feature-card" style="padding:32px;background:white;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:28px;margin:0 0 12px;">Bio</h2>
+            <p data-field="bio">Has a strong passion for editorial fashion with a focus on architectural poses and cinematic storytelling.</p>
+            <div class="stat-line">
+              <strong>Availability</strong>
+              <span data-field="availability">Available worldwide.</span>
             </div>
-            <div>
-              <h2 style="font-family:var(--font-serif); font-weight:400;">Experience</h2>
-              <ul id="talentExperience" style="list-style:none; padding:0; margin:0; display:grid; gap:0.75rem; color:var(--color-muted);"></ul>
-              <div style="margin-top:1.5rem;">
-                <h3 style="font-family:var(--font-serif); font-weight:400;">Video reel</h3>
-                <div style="position:relative; padding-top:56%; border-radius:18px; overflow:hidden; background:#0f172a;">
-                  <iframe id="talentReel" title="Talent reel" src="https://player.vimeo.com/video/76979871?h=eb2a9cbb65" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe>
-                </div>
+            <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;">
+              <a class="btn btn-ghost" href="#gallery">View Gallery ↓</a>
+              <a class="btn btn-ghost" data-field="instagram" target="_blank" rel="noopener">Instagram</a>
+              <a class="btn btn-ghost" data-field="portfolio" target="_blank" rel="noopener">Portfolio</a>
+            </div>
+          </article>
+          <article class="feature-card" style="padding:32px;background:white;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:28px;margin:0 0 12px;">Experience</h2>
+            <ul style="list-style:none;padding:0;margin:0;display:grid;gap:12px;color:rgba(15,23,42,0.7);" data-field="experience">
+              <li>Runway — New York Fashion Week SS25</li>
+              <li>Editorial — Silverline Magazine Cover</li>
+            </ul>
+          </article>
+        </div>
+        <aside style="grid-column:span 5;display:grid;gap:18px;">
+          <div class="feature-card" style="padding:32px;background:white;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:24px;margin:0 0 16px;">Quick Stats</h2>
+            <dl style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0;">
+              <div>
+                <dt style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(15,23,42,0.5);">Height</dt>
+                <dd style="margin:4px 0 0;font-weight:600;" data-field="height">5' 11"</dd>
               </div>
+              <div>
+                <dt style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(15,23,42,0.5);">Measurements</dt>
+                <dd style="margin:4px 0 0;font-weight:600;" data-field="measurements">32 • 24 • 34</dd>
+              </div>
+              <div>
+                <dt style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(15,23,42,0.5);">Shoe</dt>
+                <dd style="margin:4px 0 0;font-weight:600;" data-field="shoe">40 EU</dd>
+              </div>
+              <div>
+                <dt style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(15,23,42,0.5);">Location</dt>
+                <dd style="margin:4px 0 0;font-weight:600;" data-field="location">NYC / LA</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="feature-card" style="padding:32px;background:white;" data-video>
+            <h2 style="font-family:'Playfair Display',serif;font-size:24px;margin:0 0 16px;">Video Reel</h2>
+            <div style="position:relative;padding-top:56.25%;border-radius:20px;overflow:hidden;">
+              <iframe data-field="video" src="" title="Portfolio reel" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;"></iframe>
             </div>
           </div>
-        </section>
-      </div>
-      <div class="sticky-cta">
-        <a class="button button-secondary" href="/comp-card/?name=" id="downloadPdf">Download PDF</a>
-        <a class="button button-primary" id="contactCta" href="mailto:bookings@zipsite.com?subject=Booking inquiry">Book talent</a>
-      </div>
-    </article>
+        </aside>
+      </section>
+      <section id="gallery" style="margin-top:80px;">
+        <header class="section-header" style="margin-bottom:32px;">
+          <div>
+            <span class="section-eyebrow">Gallery</span>
+            <h2 class="section-title">Selected editorial moments</h2>
+          </div>
+          <p class="section-body">Hover to reveal labels. Images load lazily with skeleton placeholders for performance.</p>
+        </header>
+        <div class="board-grid" data-gallery>
+          <div class="board-card skeleton" style="height:420px;"></div>
+          <div class="board-card skeleton" style="height:420px;"></div>
+          <div class="board-card skeleton" style="height:420px;"></div>
+        </div>
+      </section>
+      <section style="margin-top:100px;">
+        <header class="section-header">
+          <div>
+            <span class="section-eyebrow">Browse More</span>
+            <h2 class="section-title">A–Z board explorer</h2>
+          </div>
+          <p class="section-body">Switch talent instantly. Every profile uses the same layout, delivering consistency for scouts.</p>
+        </header>
+        <div class="board-filter" data-component="board-filter">
+          <button type="button" class="is-active" data-letter="elara">Elara</button>
+          <button type="button" data-letter="marcus">Marcus</button>
+          <button type="button" data-letter="ayla">Ayla</button>
+          <button type="button" data-letter="noah">Noah</button>
+        </div>
+      </section>
+    </div>
   </main>
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="brand">ZipSite</div>
-        <p class="footer-small">Editorial-grade portfolios, curated by AI.</p>
+    <div class="inner">
+      <span>© 2025 ZipSite. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="../legal.html#privacy">Privacy Policy</a>
+        <a href="../legal.html#terms">Terms of Service</a>
       </div>
-      <nav aria-label="Footer">
-        <ul>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="/legal.html">Legal</a></li>
-          <li><a href="mailto:press@zipsite.com">press@zipsite.com</a></li>
-        </ul>
-      </nav>
+      <div class="social-links" aria-label="Social">
+        <a href="https://instagram.com" aria-label="Instagram">
+          <img src="../assets/icons/instagram.svg" alt="Instagram icon">
+        </a>
+        <a href="https://linkedin.com" aria-label="LinkedIn">
+          <img src="../assets/icons/linkedin.svg" alt="LinkedIn icon">
+        </a>
+      </div>
     </div>
   </footer>
-  <script src="/scripts/main.js" defer></script>
-  <script src="/scripts/gallery.js" defer></script>
+  <script src="../scripts/main.js" defer></script>
+  <script src="../scripts/gallery.js" defer></script>
   <script>
-    const defaultProfile = {
-      name: 'Natan Barrera',
-      role: 'Editorial / Runway',
-      location: 'Based in New York & Mexico City',
-      stats: ['Height 5\' 11"', 'Bust 31"', 'Waist 24"', 'Hips 34"', 'Shoe 9 US'],
-      bio: 'Has a strong passion for editorial fashion, blending architectural poses with dynamic movement. Comfortable on runway, e-commerce, and motion shoots.',
-      experience: [
-        'SS24 — Luar, Runway',
-        'Vogue México — Beauty story',
-        'Calvin Klein — Denim lookbook',
-        'Opening Ceremony — Campaign film'
-      ],
-      gallery: [
-        {
-          src: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=1200&q=80',
-          alt: 'Studio portrait in monochrome suit'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80',
-          alt: 'Outdoor editorial portrait'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80',
-          alt: 'Beauty close-up with natural light'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80',
-          alt: 'Runway walk with flowing coat'
-        }
-      ],
-      tier: 'pro'
-    };
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const key = params.get('talent') || 'elara';
+      const data = JSON.parse(document.getElementById('portfolio-data').textContent);
+      const profile = data[key] || data.elara;
+      document.title = `${profile.name} — ZipSite Portfolio`;
+      const ld = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": profile.name,
+        "height": profile.height,
+        "knowsAbout": profile.role,
+        "homeLocation": profile.location,
+        "url": profile.portfolio,
+        "sameAs": profile.instagram ? [profile.instagram] : []
+      };
+      const ldScript = document.createElement('script');
+      ldScript.type = 'application/ld+json';
+      ldScript.textContent = JSON.stringify(ld);
+      document.head.appendChild(ldScript);
 
-    const params = new URLSearchParams(window.location.search);
-    const profile = JSON.parse(params.get('profile') || 'null') || defaultProfile;
-    const nameOverride = params.get('name');
-    if (nameOverride) profile.name = decodeURIComponent(nameOverride);
-
-    document.title = `${profile.name} — ZipSite Portfolio`;
-    document.getElementById('talentName').textContent = profile.name;
-    document.getElementById('talentLocation').textContent = `${profile.role || 'Talent'} · ${profile.location || 'Global'}`;
-
-    const quickStats = document.getElementById('quickStats');
-    quickStats.innerHTML = '';
-    (profile.stats || []).forEach(stat => {
-      const pill = document.createElement('span');
-      pill.className = 'stat-pill';
-      pill.textContent = stat;
-      quickStats.appendChild(pill);
-    });
-
-    const gallery = document.getElementById('talentGallery');
-    gallery.innerHTML = '';
-    (profile.gallery || []).forEach(item => {
-      const card = document.createElement('figure');
-      card.className = 'gallery-item';
-      card.innerHTML = `<div class="skeleton" aria-hidden="true"></div>`;
-      const img = document.createElement('img');
-      img.src = item.src;
-      img.alt = item.alt;
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.addEventListener('load', () => {
-        const skeleton = card.querySelector('.skeleton');
-        if (skeleton) skeleton.remove();
+      const root = document.querySelector('[data-component="portfolio"]');
+      if (!root) return;
+      root.querySelector('[data-field="role"]').textContent = profile.role;
+      root.querySelector('[data-field="location"]').textContent = profile.location;
+      root.querySelector('h1.section-title').textContent = profile.name;
+      root.querySelectorAll('[data-field="height"]').forEach(el => el.textContent = profile.height);
+      root.querySelectorAll('[data-field="measurements"]').forEach(el => el.textContent = profile.measurements);
+      root.querySelectorAll('[data-field="shoe"]').forEach(el => el.textContent = profile.shoe);
+      root.querySelector('[data-field="bio"]').textContent = profile.bio;
+      root.querySelector('[data-field="availability"]').textContent = profile.availability || 'On request';
+      root.querySelector('[data-field="instagram"]').href = profile.instagram || '#';
+      root.querySelector('[data-field="instagram"]').textContent = profile.instagram ? 'Instagram' : 'Instagram — pending';
+      root.querySelector('[data-field="portfolio"]').href = profile.portfolio || '#';
+      root.querySelector('[data-field="portfolio"]').textContent = profile.portfolio ? 'Portfolio' : 'Portfolio — pending';
+      const expList = root.querySelector('[data-field="experience"]');
+      expList.innerHTML = '';
+      (profile.experience || []).forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        expList.appendChild(li);
       });
-      card.appendChild(img);
-      gallery.appendChild(card);
-    });
-
-    document.getElementById('talentBio').textContent = profile.bio;
-    const experience = document.getElementById('talentExperience');
-    experience.innerHTML = '';
-    (profile.experience || []).forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      experience.appendChild(li);
-    });
-
-    const pdfLink = document.getElementById('downloadPdf');
-    pdfLink.href = `/comp-card/?name=${encodeURIComponent(profile.name)}&tier=${profile.tier || 'free'}`;
-
-    const contactCta = document.getElementById('contactCta');
-    contactCta.href = `mailto:bookings@zipsite.com?subject=Booking%20inquiry%20for%20${encodeURIComponent(profile.name)}`;
-
-    const schema = {
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      'name': profile.name,
-      'jobTitle': profile.role,
-      'description': profile.bio,
-      'height': profile.stats?.find(s => s.toLowerCase().includes('height')),
-      'url': window.location.href
-    };
-    document.getElementById('personSchema').textContent = JSON.stringify(schema);
+      const gallery = root.querySelector('[data-gallery]');
+      gallery.innerHTML = '';
+      (profile.photos || []).forEach((photo, index) => {
+        const card = document.createElement('article');
+        card.className = 'board-card';
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.src = photo;
+        img.alt = `${profile.name} editorial ${index + 1}`;
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        const span = document.createElement('span');
+        span.textContent = profile.role;
+        const h3 = document.createElement('h3');
+        h3.textContent = profile.name;
+        meta.appendChild(span);
+        meta.appendChild(h3);
+        card.appendChild(img);
+        card.appendChild(meta);
+        gallery.appendChild(card);
+      });
+      const videoWrapper = root.querySelector('[data-video]');
+      if (profile.video) {
+        videoWrapper.hidden = false;
+        videoWrapper.querySelector('iframe').src = profile.video;
+      } else {
+        videoWrapper.hidden = true;
+      }
+      const boardFilter = root.querySelector('[data-component="board-filter"]');
+      boardFilter.querySelectorAll('button').forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.letter === key);
+        btn.addEventListener('click', () => {
+          window.location.search = `?talent=${btn.dataset.letter}`;
+        });
+      });
+      const download = root.querySelector('[data-cta="download"]');
+      download.href = `../comp-card/index.html?talent=${key}`;
+    })();
   </script>
 </body>
 </html>

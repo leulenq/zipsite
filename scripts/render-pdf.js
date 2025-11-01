@@ -1,36 +1,46 @@
 #!/usr/bin/env node
+/**
+ * Server-side PDF export for ZipSite comp cards using Puppeteer.
+ */
 const path = require('path');
 const puppeteer = require('puppeteer');
 
-async function renderCompCard({ url, output, name = 'Talent', tier = 'free' }) {
-  const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-  const page = await browser.newPage();
-  const targetUrl = `${url}?name=${encodeURIComponent(name)}&tier=${tier}`;
-  await page.goto(targetUrl, { waitUntil: 'networkidle0' });
-  const pdfPath = output || path.resolve(process.cwd(), `ZipSite_CompCard_${name.replace(/\s+/g, '')}.pdf`);
-  await page.pdf({
-    path: pdfPath,
-    printBackground: true,
-    width: '5.5in',
-    height: '8.5in',
-    margin: { top: '0in', right: '0in', bottom: '0in', left: '0in' },
-    scale: 1
-  });
-  await browser.close();
-  console.log(`Saved PDF to ${pdfPath}`);
+async function render({ talent = 'elara', tier = 'free', output }) {
+  const fileName = output || path.resolve(process.cwd(), `ZipSite_CompCard_${talent}_${tier}.pdf`);
+  const url = `file://${path.resolve(__dirname, '../comp-card/index.html')}?talent=${talent}&tier=${tier}`;
+  const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+  try {
+    const page = await browser.newPage();
+    await page.goto(url, { waitUntil: 'networkidle0' });
+    await page.emulateMediaType('print');
+    await page.pdf({
+      path: fileName,
+      width: '5.5in',
+      height: '8.5in',
+      printBackground: true,
+      pageRanges: '1',
+      preferCSSPageSize: true
+    });
+    console.log(`PDF saved to ${fileName}`);
+  } finally {
+    await browser.close();
+  }
 }
 
 if (require.main === module) {
   const args = process.argv.slice(2);
-  if (!args.length) {
-    console.error('Usage: node scripts/render-pdf.js <comp-card-url> [output] [name] [tier]');
-    process.exit(1);
+  const options = {};
+  for (let i = 0; i < args.length; i += 1) {
+    const [key, value] = args[i].split('=');
+    if (value === undefined) continue;
+    if (key === '--talent') options.talent = value;
+    if (key === '--tier') options.tier = value;
+    if (key === '--output') options.output = value;
   }
-  const [url, output, name, tier] = args;
-  renderCompCard({ url, output, name, tier }).catch((error) => {
-    console.error(error);
+  render(options).catch((error) => {
+    console.error('Failed to render PDF', error);
     process.exit(1);
   });
 }
 
-module.exports = renderCompCard;
+module.exports = render;

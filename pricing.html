@@ -3,160 +3,176 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pricing — ZipSite</title>
-  <meta name="description" content="Compare ZipSite plans: free PDF comp card and $9.99/mo pro live portfolio with analytics, reels, and contact tools.">
-  <link rel="canonical" href="https://zipsite.example.com/pricing.html">
+  <title>ZipSite Pricing — Free Comp Card &amp; Pro Portfolio</title>
+  <meta name="description" content="Choose between the free ZipSite PDF comp card and the $9.99/mo Pro live portfolio experience with agency-grade features.">
+  <link rel="canonical" href="https://zipsite.example/pricing.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/global.css">
 </head>
-<body>
+<body class="page">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container inner">
-      <a class="brand" href="/">ZipSite</a>
-      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
-      <nav class="primary-nav" aria-label="Primary">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/features.html">Features</a></li>
-          <li><a href="/how.html">How It Works</a></li>
-          <li><a href="/pricing.html" aria-current="page">Pricing</a></li>
-          <li><a href="/demo.html">Demo</a></li>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="/legal.html">Legal</a></li>
-        </ul>
+  <header class="site-header" data-component="header">
+    <div class="inner">
+      <a class="site-brand" href="index.html">
+        <img src="assets/logo-zipsite.svg" alt="ZipSite logo">
+        <span>ZipSite</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="how.html">How it Works</a>
+        <a href="pricing.html" aria-current="page">Pricing</a>
+        <a href="demo.html">Demo</a>
+        <a href="press.html">Press</a>
       </nav>
-      <div class="mobile-nav-panel" id="mobileNav" hidden>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/features.html">Features</a></li>
-          <li><a href="/how.html">How It Works</a></li>
-          <li><a href="/pricing.html">Pricing</a></li>
-          <li><a href="/demo.html">Demo</a></li>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="/legal.html">Legal</a></li>
-          <li><a class="button button-primary" href="/apply/">Apply</a></li>
-        </ul>
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="apply/index.html">Start Free PDF</a>
+        <a class="btn btn-primary" href="pricing.html#premium">Go Pro</a>
       </div>
-      <a class="button button-secondary" href="/apply/">Apply</a>
+      <button class="mobile-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <span></span>
+      </button>
     </div>
   </header>
+  <nav id="mobile-nav" class="mobile-nav" aria-hidden="true" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="how.html">How it Works</a>
+    <a href="pricing.html" aria-current="page">Pricing</a>
+    <a href="demo.html">Demo</a>
+    <a href="press.html">Press</a>
+    <a href="apply/index.html">Start Free PDF</a>
+  </nav>
   <main id="main">
-    <section class="hero" style="padding-bottom:3rem;">
-      <div class="container hero-grid">
-        <div class="hero-copy motion-reveal">
-          <span class="badge">Plans</span>
-          <h1>Elegant deliverables, flexible tiers.</h1>
-          <p>Start with the free PDF comp card. Upgrade to the Pro live site when you need booking-ready links, reels, and analytics.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="/apply/">Begin Free</a>
-            <a class="button button-secondary" href="/demo.html">Preview the Pro site</a>
+    <section class="hero" style="padding-bottom:60px;">
+      <div class="hero-copy fade-in">
+        <span class="hero-eyebrow">Plans</span>
+        <h1>Start free. Upgrade when you want the runway treatment.</h1>
+        <p>ZipSite begins with a complimentary comp card. When you’re ready to debut the live experience, upgrade to the $9.99/mo Pro site and remove the watermark.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="apply/index.html">Start My Free Application</a>
+          <a class="btn btn-outline" href="#comparison">Compare Plans</a>
+        </div>
+      </div>
+      <div class="hero-visual fade-in" data-delay="120">
+        <div class="after" data-label="Plans">
+          <img src="https://images.unsplash.com/photo-1520975698519-59c05bf1c910?auto=format&fit=crop&w=900&q=80" alt="Pricing preview">
+          <div class="details">
+            <div class="stats">
+              <span class="pill pill-accent">Free</span>
+              <span class="pill pill-accent">$9.99/mo</span>
+            </div>
+            <h3>Two ways to launch</h3>
+            <p>Every plan benefits from the same AI curation. The difference is how far you want to take the presentation.</p>
+            <ul>
+              <li>PDF comp card with tasteful watermark</li>
+              <li>Pro removes watermark, adds video and analytics</li>
+              <li>Agencies earn 25% revenue share on upgrades</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="plans">
-      <div class="container">
-        <div class="pricing">
-          <article class="pricing-card motion-reveal" data-delay="40">
-            <h3>Free</h3>
-            <div class="price">$0</div>
-            <p class="muted">Perfect for emerging talent and scouts who need a standardized PDF comp card immediately.</p>
-            <ul>
-              <li>AI-refined bio & stats</li>
-              <li>Printable PDF comp card</li>
-              <li>Watermark: “Refined by ZipSite”</li>
-              <li>Image tagging & organization</li>
+    <section id="comparison" class="section fade-in" data-delay="80">
+      <div class="inner">
+        <header class="section-header">
+          <div>
+            <span class="section-eyebrow">Included Value</span>
+            <h2 class="section-title">Every plan includes AI curation &amp; editorial styling</h2>
+          </div>
+          <p class="section-body">Choose the right destination for your book. Upgrade any time—the AI Brain keeps your content ready.</p>
+        </header>
+        <div class="card-deck">
+          <article class="feature-card" style="background:rgba(255,255,255,0.96);">
+            <div class="banner">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.09 5.74L14.78 6.36L11.39 9.63L12.18 14.27L8 12L3.82 14.27L4.61 9.63L1.22 6.36L5.91 5.74L8 1.5Z" stroke="currentColor" stroke-width="1.2"/></svg>
+              Included
+            </div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:32px;margin:12px 0 0;">Free Comp Card</h3>
+            <p>Instant PDF export with “Refined by ZipSite” watermark.</p>
+            <ul style="list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px;color:rgba(15,23,42,0.7);">
+              <li>AI-polished bio &amp; stats</li>
+              <li>Drag-and-drop image upload</li>
+              <li>Downloadable comp card PDF</li>
+              <li>Agency board placement</li>
             </ul>
-            <a class="button button-secondary" href="/apply/">Start Free PDF</a>
+            <a class="btn btn-outline" href="apply/index.html" style="margin-top:28px;">Start Free PDF</a>
           </article>
-          <article class="pricing-card motion-reveal" data-delay="80">
-            <h3>Pro</h3>
-            <div class="price">$9.99<span style="font-size:1rem; font-family:var(--font-sans);">/mo</span></div>
-            <p class="muted">Ideal for working talent and agencies who need a live link, booking CTA, and pro-only media support.</p>
-            <ul>
-              <li>Everything in Free</li>
-              <li>Custom URL portfolio</li>
-              <li>Watermark removed</li>
-              <li>Video reels + lookbook</li>
-              <li>Analytics & booking log</li>
+          <article class="feature-card" style="background:linear-gradient(135deg,rgba(15,23,42,0.92),rgba(32,67,255,0.6));color:white;">
+            <div class="banner" style="background:rgba(255,255,255,0.16);color:white;">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.09 5.74L14.78 6.36L11.39 9.63L12.18 14.27L8 12L3.82 14.27L4.61 9.63L1.22 6.36L5.91 5.74L8 1.5Z" stroke="currentColor" stroke-width="1.2"/></svg>
+              Most Loved
+            </div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:32px;margin:12px 0 0;">Pro Portfolio</h3>
+            <p>Live editorial site + watermark-free exports for $9.99/mo.</p>
+            <ul style="list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px;color:rgba(255,255,255,0.82);">
+              <li>Custom URL &amp; cinematic layout</li>
+              <li>Video reels + backstage gallery</li>
+              <li>Analytics dashboard &amp; upgrades</li>
+              <li>Priority AI updates</li>
             </ul>
-            <a class="button button-primary" href="/apply/">Upgrade to Pro</a>
+            <a class="btn btn-primary" href="apply/index.html" style="margin-top:28px;">Upgrade to Premium</a>
+          </article>
+          <article class="feature-card" style="background:rgba(255,255,255,0.96);">
+            <div class="banner" style="background:rgba(32,67,255,0.12);">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.09 5.74L14.78 6.36L11.39 9.63L12.18 14.27L8 12L3.82 14.27L4.61 9.63L1.22 6.36L5.91 5.74L8 1.5Z" stroke="currentColor" stroke-width="1.2"/></svg>
+              For Agencies
+            </div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:32px;margin:12px 0 0;">Partner Program</h3>
+            <p>Standardized submissions + 25% recurring commissions.</p>
+            <ul style="list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px;color:rgba(15,23,42,0.7);">
+              <li>Invite-only scout dashboard</li>
+              <li>Curated feed &amp; shortlist tools</li>
+              <li>Automated payouts monthly</li>
+              <li>Concierge onboarding</li>
+            </ul>
+            <a class="btn btn-outline" href="press.html#contact" style="margin-top:28px;">Become a Partner</a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="comparison">
-      <div class="container">
-        <div class="section-heading motion-reveal">
-          <h2 id="comparison">Compare benefits</h2>
-          <p>Whichever tier you choose, the core experience stays consistent: editorial presentation, fast automation, and agency trust.</p>
+    <section class="section premium fade-in" data-delay="90" id="premium">
+      <div class="inner">
+        <div class="copy">
+          <span class="section-eyebrow">Premium Value</span>
+          <h2>Engineered polish that keeps your bookings on pace.</h2>
+          <p>The Pro plan unlocks cinematic storytelling, deeper analytics, and a watermark-free comp card—all tuned for editorial teams.</p>
+          <ul>
+            <li>Remove watermark across every asset</li>
+            <li>Multi-format galleries with lazy loading</li>
+            <li>Private notes between scouts and bookers</li>
+            <li>Export PDF directly from live data</li>
+          </ul>
+          <a class="btn btn-primary" href="apply/index.html">Upgrade Today</a>
         </div>
-        <div class="table-responsive motion-reveal">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Feature</th>
-                <th scope="col">Free PDF</th>
-                <th scope="col">Pro Site</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">AI bio + stats</th>
-                <td>Included</td>
-                <td>Included</td>
-              </tr>
-              <tr>
-                <th scope="row">Watermark</th>
-                <td>“Refined by ZipSite”</td>
-                <td>Hidden</td>
-              </tr>
-              <tr>
-                <th scope="row">Portfolio URL</th>
-                <td>—</td>
-                <td>Custom link (zipsite.me/name)</td>
-              </tr>
-              <tr>
-                <th scope="row">Video reels</th>
-                <td>—</td>
-                <td>Embed & autoplay controls</td>
-              </tr>
-              <tr>
-                <th scope="row">Analytics</th>
-                <td>—</td>
-                <td>Visits, saves, booking log</td>
-              </tr>
-              <tr>
-                <th scope="row">Downloadable PDF</th>
-                <td>Yes</td>
-                <td>Yes</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="mockup-frame" aria-hidden="true">
+          <img class="laptop" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80" alt="Premium analytics">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Pro mobile experience">
         </div>
       </div>
     </section>
   </main>
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="brand">ZipSite</div>
-        <p class="footer-small">Editorial-grade portfolios, curated by AI.</p>
+    <div class="inner">
+      <span>© 2025 ZipSite. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="legal.html#privacy">Privacy Policy</a>
+        <a href="legal.html#terms">Terms of Service</a>
       </div>
-      <nav aria-label="Footer">
-        <ul>
-          <li><a href="/press.html">Press</a></li>
-          <li><a href="/legal.html">Legal</a></li>
-          <li><a href="mailto:press@zipsite.com">press@zipsite.com</a></li>
-        </ul>
-      </nav>
+      <div class="social-links" aria-label="Social">
+        <a href="https://instagram.com" aria-label="Instagram">
+          <img src="assets/icons/instagram.svg" alt="Instagram icon">
+        </a>
+        <a href="https://linkedin.com" aria-label="LinkedIn">
+          <img src="assets/icons/linkedin.svg" alt="LinkedIn icon">
+        </a>
+      </div>
     </div>
   </footer>
-  <script src="/scripts/main.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 </body>
 </html>
