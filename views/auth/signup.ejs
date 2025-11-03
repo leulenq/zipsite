@@ -1,43 +1,67 @@
-<section class="panel auth-panel">
-  <h1>Create your ZipSite account</h1>
-  <form method="post" action="/signup" class="form-stack">
-    <fieldset>
-      <legend>Account type</legend>
-      <label class="inline">
-        <input type="radio" name="role" value="TALENT" <%= (values.role || 'TALENT') === 'TALENT' ? 'checked' : '' %>> Talent
-      </label>
-      <label class="inline">
-        <input type="radio" name="role" value="AGENCY" <%= values.role === 'AGENCY' ? 'checked' : '' %>> Agency
-      </label>
-      <% if (errors && errors.role) { %>
-        <small class="field-error"><%= errors.role[0] %></small>
-      <% } %>
-    </fieldset>
-    <label>First name
-      <input type="text" name="first_name" value="<%= values.first_name || '' %>" required>
-      <% if (errors && errors.first_name) { %>
-        <small class="field-error"><%= errors.first_name[0] %></small>
-      <% } %>
-    </label>
-    <label>Last name
-      <input type="text" name="last_name" value="<%= values.last_name || '' %>" required>
-      <% if (errors && errors.last_name) { %>
-        <small class="field-error"><%= errors.last_name[0] %></small>
-      <% } %>
-    </label>
-    <label>Email
-      <input type="email" name="email" value="<%= values.email || '' %>" required>
-      <% if (errors && errors.email) { %>
-        <small class="field-error"><%= errors.email[0] %></small>
-      <% } %>
-    </label>
-    <label>Password
-      <input type="password" name="password" required>
-      <% if (errors && errors.password) { %>
-        <small class="field-error"><%= errors.password[0] %></small>
-      <% } %>
-    </label>
-    <button type="submit" class="button button-primary">Create account</button>
-  </form>
-  <p class="muted">Already on ZipSite? <a href="/login">Sign in</a></p>
+<%- include('../partials/forms', { errors, values }) %>
+<section class="auth-layout">
+  <div class="auth-layout__intro">
+    <span class="eyebrow">Join ZipSite</span>
+    <h1 class="display">Build your premium comp card</h1>
+    <p class="lede">Create an editorial-grade profile with curated copy, sharp imagery, and an always-on PDF ready for castings.</p>
+    <ul class="auth-benefits">
+      <li>Polished dashboard with live previews</li>
+      <li>Secure agency access and commissions</li>
+      <li>Pro upgrades with watermark-free exports</li>
+    </ul>
+  </div>
+  <div class="auth-card" role="form">
+    <form method="post" action="/signup" class="form" data-async>
+      <% const signupNext = valueFor('next', ''); %>
+      <input type="hidden" name="next" value="<%= signupNext %>">
+      <fieldset class="form-fieldset">
+        <legend>Account type</legend>
+        <div class="choice-group">
+          <label class="choice <%= valueFor('role', 'TALENT') === 'TALENT' ? 'is-selected' : '' %>">
+            <input type="radio" name="role" value="TALENT" <%= valueFor('role', 'TALENT') === 'TALENT' ? 'checked' : '' %>>
+            <span>Talent</span>
+          </label>
+          <label class="choice <%= valueFor('role') === 'AGENCY' ? 'is-selected' : '' %>">
+            <input type="radio" name="role" value="AGENCY" <%= valueFor('role') === 'AGENCY' ? 'checked' : '' %>>
+            <span>Agency</span>
+          </label>
+        </div>
+        <% if (fieldError('role')) { %>
+          <p class="field-error" role="alert"><%= fieldError('role') %></p>
+        <% } %>
+      </fieldset>
+      <div class="form-grid">
+        <div class="form-field <%= fieldError('first_name') ? 'has-error' : '' %>">
+          <label for="first_name">First name</label>
+          <input id="first_name" name="first_name" autocomplete="given-name" required value="<%= valueFor('first_name', '') %>">
+          <% if (fieldError('first_name')) { %>
+            <p class="field-error" role="alert"><%= fieldError('first_name') %></p>
+          <% } %>
+        </div>
+        <div class="form-field <%= fieldError('last_name') ? 'has-error' : '' %>">
+          <label for="last_name">Last name</label>
+          <input id="last_name" name="last_name" autocomplete="family-name" required value="<%= valueFor('last_name', '') %>">
+          <% if (fieldError('last_name')) { %>
+            <p class="field-error" role="alert"><%= fieldError('last_name') %></p>
+          <% } %>
+        </div>
+      </div>
+      <div class="form-field <%= fieldError('email') ? 'has-error' : '' %>">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required value="<%= valueFor('email', '') %>">
+        <% if (fieldError('email')) { %>
+          <p class="field-error" role="alert"><%= fieldError('email') %></p>
+        <% } %>
+      </div>
+      <div class="form-field <%= fieldError('password') ? 'has-error' : '' %>">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" required minlength="8">
+        <% if (fieldError('password')) { %>
+          <p class="field-error" role="alert"><%= fieldError('password') %></p>
+        <% } %>
+      </div>
+      <button type="submit" class="button button-primary button-block" data-loading-text="Creating account…">Create account</button>
+    </form>
+    <p class="auth-switch">Already on ZipSite? <a href="/login<%= signupNext ? `?next=${encodeURIComponent(signupNext)}` : '' %>">Sign in</a>.</p>
+  </div>
 </section>

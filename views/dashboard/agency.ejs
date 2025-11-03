@@ -1,42 +1,125 @@
-<section class="panel">
-  <header class="panel-header">
-    <h1>Agency feed</h1>
-    <div class="panel-actions">
-      <form method="get" class="filter-form">
-        <label>Sort
-          <select name="sort">
-            <option value="az" <%= filters.sort === 'az' ? 'selected' : '' %>>A–Z</option>
-            <option value="city" <%= filters.sort === 'city' ? 'selected' : '' %>>City</option>
-          </select>
-        </label>
-        <label>City
-          <input type="text" name="city" value="<%= filters.city || '' %>">
-        </label>
-        <label>Letter
-          <select name="letter">
-            <option value="">All</option>
-            <% 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((l) => { %>
-              <option value="<%= l %>" <%= filters.letter === l ? 'selected' : '' %>><%= l %></option>
-            <% }) %>
-          </select>
-        </label>
-        <button type="submit" class="button">Apply</button>
-      </form>
+<section class="agency-hero">
+  <div>
+    <span class="eyebrow">Partner dashboard</span>
+    <h1 class="display">Discover curated talent</h1>
+    <p class="lede">Browse ZipSite profiles refined by our editorial team. Claim the talent you love to earn commissions on upgrades.</p>
+  </div>
+  <div class="agency-hero__summary">
+    <p class="label">Lifetime commissions</p>
+    <p class="value">$<%= commissionsTotal %></p>
+    <a class="button button-secondary" href="/features">Become a Partner</a>
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-panel">
+    <form method="get" class="filter-toolbar" data-filter-form data-async>
+      <div class="filter-group">
+        <label for="search">Search</label>
+        <input id="search" name="search" type="search" placeholder="Name" value="<%= filters.search || '' %>">
+      </div>
+      <div class="filter-group">
+        <label for="city">City</label>
+        <input id="city" name="city" type="text" placeholder="Any city" value="<%= filters.city || '' %>">
+      </div>
+      <div class="filter-group">
+        <label for="letter">Last name</label>
+        <select id="letter" name="letter">
+          <option value="">All</option>
+          <% 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((l) => { %>
+            <option value="<%= l %>" <%= filters.letter === l ? 'selected' : '' %>><%= l %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="min_height">Min height (cm)</label>
+        <input id="min_height" name="min_height" type="number" min="120" max="220" value="<%= filters.min_height || '' %>">
+      </div>
+      <div class="filter-group">
+        <label for="max_height">Max height (cm)</label>
+        <input id="max_height" name="max_height" type="number" min="120" max="220" value="<%= filters.max_height || '' %>">
+      </div>
+      <div class="filter-group">
+        <label for="sort">Sort</label>
+        <select id="sort" name="sort">
+          <option value="az" <%= filters.sort === 'az' ? 'selected' : '' %>>A–Z</option>
+          <option value="city" <%= filters.sort === 'city' ? 'selected' : '' %>>City</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button type="submit" class="button button-primary" data-loading-text="Filtering…">Apply filters</button>
+        <a class="button button-secondary" href="/dashboard/agency">Reset</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="talent-grid" data-talent-grid>
+    <% if (!profiles.length) { %>
+      <div class="dashboard-panel empty-state">
+        <p>No profiles found. Adjust your filters to discover more talent.</p>
+      </div>
+    <% } else { %>
+      <% profiles.forEach((profile) => { %>
+        <article class="talent-card">
+          <header class="talent-card__header">
+            <h2><%= profile.first_name %> <%= profile.last_name %></h2>
+            <div class="talent-tags">
+              <% if (profile.is_pro) { %>
+                <span class="badge badge-pro">PRO</span>
+              <% } %>
+              <% if (profile.partner_agency_id && profile.partner_agency_id === currentUser.id) { %>
+                <span class="badge badge-muted">Claimed by you</span>
+              <% } else if (profile.partner_agency_id && profile.partner_agency_id !== currentUser.id) { %>
+                <span class="badge badge-muted">Claimed</span>
+              <% } %>
+            </div>
+          </header>
+          <p class="talent-meta"><%= profile.city %> • <%= profile.height_cm %> cm • <%= profile.measurements %></p>
+          <p class="talent-bio"><%= profile.bio_curated %></p>
+          <div class="talent-actions">
+            <a class="button button-secondary" href="/portfolio/<%= profile.slug %>" target="_blank" rel="noopener">View portfolio</a>
+            <% if (!profile.partner_agency_id || profile.partner_agency_id === currentUser.id) { %>
+              <form method="post" action="/agency/claim" data-claim-form>
+                <input type="hidden" name="slug" value="<%= profile.slug %>">
+                <button type="submit" class="button button-primary" data-loading-text="Claiming…"><%= profile.partner_agency_id === currentUser.id ? 'Refresh claim' : 'Claim commission' %></button>
+              </form>
+            <% } %>
+          </div>
+        </article>
+      <% }) %>
+    <% } %>
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-panel commission-panel">
+    <div class="commission-header">
+      <h2>Recent commissions</h2>
+      <p class="muted">Automatic payouts from talent upgrades.</p>
     </div>
-  </header>
-
-  <p class="muted">Commission summary: <strong>$<%= commissionsTotal %></strong> lifetime</p>
-
-  <div class="grid three-col">
-    <% profiles.forEach((profile) => { %>
-      <article class="card">
-        <h2><a href="/portfolio/<%= profile.slug %>"><%= profile.first_name %> <%= profile.last_name %></a></h2>
-        <p class="muted"><%= profile.city %> • <%= profile.measurements %> • <%= profile.height_cm %> cm</p>
-        <form method="post" action="/agency/claim">
-          <input type="hidden" name="slug" value="<%= profile.slug %>">
-          <button type="submit" class="button button-secondary">Claim profile</button>
-        </form>
-      </article>
-    <% }) %>
+    <% if (!latestCommissions.length) { %>
+      <p class="muted">No commissions yet—claim talent to start earning.</p>
+    <% } else { %>
+      <table class="commission-table">
+        <thead>
+          <tr>
+            <th scope="col">Talent</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% latestCommissions.forEach((commission) => { %>
+            <tr>
+              <td><a href="/portfolio/<%= commission.slug %>" target="_blank" rel="noopener"><%= commission.first_name %> <%= commission.last_name %></a></td>
+              <td>$<%= (commission.amount_cents / 100).toFixed(2) %></td>
+              <td><%= new Date(commission.created_at).toLocaleDateString() %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
   </div>
 </section>

@@ -25,7 +25,7 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <div class="container inner">
+    <div class="container site-header__inner">
       <a class="brand" href="/">ZipSite</a>
       <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
       <nav class="primary-nav" aria-label="Primary">
@@ -39,19 +39,25 @@
           <li><a href="/legal">Legal</a></li>
         </ul>
       </nav>
-      <div class="mobile-nav-panel" id="mobileNav" hidden>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/features">Features</a></li>
-          <li><a href="/how">How It Works</a></li>
-          <li><a href="/pricing">Pricing</a></li>
-          <li><a href="/demo">Demo</a></li>
-          <li><a href="/press">Press</a></li>
-          <li><a href="/legal">Legal</a></li>
-          <li><a class="button button-primary" href="/apply">Apply</a></li>
-        </ul>
+      <div class="site-header__cta">
+        <a class="link-muted" href="/login">Login</a>
+        <a class="button button-secondary" href="/signup">Sign up</a>
+        <a class="button button-primary" href="/apply">Start Free PDF</a>
       </div>
-      <a class="button button-secondary" href="/apply">Apply</a>
+    </div>
+    <div class="mobile-nav-panel" id="mobileNav" hidden>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/how">How It Works</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/demo">Demo</a></li>
+        <li><a href="/press">Press</a></li>
+        <li><a href="/legal">Legal</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Sign up</a></li>
+        <li><a class="button button-primary" href="/apply">Start Free PDF</a></li>
+      </ul>
     </div>
   </header>
   <main id="main">

@@ -1,4 +1,6 @@
 (function () {
+  const ZipSite = (window.ZipSite = window.ZipSite || {});
+
   function toast(message, type = 'info') {
     let container = document.querySelector('.toast-container');
     if (!container) {
@@ -10,79 +12,123 @@
     note.className = `toast toast-${type}`;
     note.textContent = message;
     container.appendChild(note);
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       note.classList.add('show');
-    }, 10);
+    });
     setTimeout(() => {
       note.classList.remove('show');
-      note.addEventListener('transitionend', () => note.remove(), { once: true });
-    }, 3200);
+      note.addEventListener(
+        'transitionend',
+        () => {
+          note.remove();
+          if (!container.childElementCount) {
+            container.remove();
+          }
+        },
+        { once: true }
+      );
+    }, 3600);
   }
 
-  const ctas = document.querySelectorAll('a.button.button-primary');
-  ctas.forEach((cta) => {
-    if (/Start Free PDF/i.test(cta.textContent || '')) {
-      cta.setAttribute('href', '/apply');
-    }
-    if (/Apply/i.test(cta.textContent || '') && !cta.getAttribute('href')) {
-      cta.setAttribute('href', '/apply');
-    }
-  });
+  ZipSite.toast = toast;
 
-  const uploadForm = document.querySelector('#uploadForm');
-  if (uploadForm) {
-    uploadForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const formData = new FormData(uploadForm);
-      const fileInput = uploadForm.querySelector('input[type="file"]');
-      if (!fileInput || !fileInput.files.length) {
-        toast('Select a file to upload', 'error');
-        return;
-      }
-      const submitButton = uploadForm.querySelector('button[type="submit"]');
-      submitButton.disabled = true;
-      submitButton.textContent = 'Uploading…';
-      try {
-        const response = await fetch('/upload', {
-          method: 'POST',
-          body: formData
-        });
-        if (!response.ok) {
-          const data = await response.json().catch(() => ({}));
-          throw new Error(data.error || 'Upload failed');
-        }
-        toast('Upload successful', 'success');
-        window.location.reload();
-      } catch (error) {
-        toast(error.message, 'error');
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Upload';
-      }
+  function setLoading(button, loadingText) {
+    if (!button) return () => {};
+    const originalText = button.dataset.originalText || button.textContent;
+    button.dataset.originalText = originalText;
+    button.disabled = true;
+    if (loadingText) {
+      button.textContent = loadingText;
+    }
+    button.classList.add('is-loading');
+    return () => {
+      button.disabled = false;
+      button.classList.remove('is-loading');
+      button.textContent = originalText;
+    };
+  }
+
+  ZipSite.setLoading = setLoading;
+
+  function hydrateFlash() {
+    const flashes = document.querySelectorAll('[data-flash]');
+    flashes.forEach((node) => {
+      toast(node.textContent.trim(), node.dataset.flashType || 'info');
+      node.remove();
     });
   }
 
-  const pdfButtons = document.querySelectorAll('[data-generate-pdf]');
-  pdfButtons.forEach((button) => {
-    button.addEventListener('click', async (event) => {
-      event.preventDefault();
-      const slug = button.getAttribute('data-slug');
-      if (!slug) return;
-      try {
-        const response = await fetch(`/pdf/${slug}?download=1`);
-        if (!response.ok) {
-          throw new Error('Unable to generate PDF');
+  function handleAsyncForms() {
+    document.querySelectorAll('form[data-async]').forEach((form) => {
+      form.addEventListener('submit', () => {
+        const submitButton = form.querySelector('[type="submit"]');
+        const loadingText = submitButton?.dataset.loadingText;
+        if (submitButton) {
+          setLoading(submitButton, loadingText);
         }
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `ZipSite-${slug}-compcard.pdf`;
-        link.click();
-        window.URL.revokeObjectURL(url);
-      } catch (error) {
-        toast(error.message, 'error');
-      }
+      });
     });
+  }
+
+  function handleCopyLinks() {
+    document.querySelectorAll('[data-copy-link]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const value = button.getAttribute('data-copy-value');
+        try {
+          await navigator.clipboard.writeText(value);
+          toast('Link copied to clipboard', 'success');
+        } catch (error) {
+          toast('Unable to copy link', 'error');
+        }
+      });
+    });
+  }
+
+  function handlePdfButtons() {
+    document.querySelectorAll('[data-action="download-pdf"]').forEach((button) => {
+      button.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const slug = button.getAttribute('data-slug');
+        if (!slug) return;
+        const done = setLoading(button, 'Generating…');
+        try {
+          const response = await fetch(`/pdf/${slug}?download=1`);
+          if (!response.ok) {
+            throw new Error('Unable to generate PDF');
+          }
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `ZipSite-${slug}-compcard.pdf`;
+          link.click();
+          window.URL.revokeObjectURL(url);
+          toast('PDF downloaded', 'success');
+        } catch (error) {
+          toast(error.message, 'error');
+        } finally {
+          done();
+        }
+      });
+    });
+  }
+
+  function wireMobileNav() {
+    const toggle = document.querySelector('.mobile-nav-toggle');
+    const panel = document.querySelector('#mobileNav');
+    if (!toggle || !panel) return;
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      panel.hidden = expanded;
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    hydrateFlash();
+    handleAsyncForms();
+    handleCopyLinks();
+    handlePdfButtons();
+    wireMobileNav();
   });
 })();

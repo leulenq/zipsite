@@ -1,19 +1,34 @@
-<section class="panel auth-panel">
-  <h1>Sign in</h1>
-  <form method="post" action="/login" class="form-stack">
-    <label>Email
-      <input type="email" name="email" value="<%= values.email || '' %>" required>
-      <% if (errors && errors.email) { %>
-        <small class="field-error"><%= errors.email[0] %></small>
-      <% } %>
-    </label>
-    <label>Password
-      <input type="password" name="password" required>
-      <% if (errors && errors.password) { %>
-        <small class="field-error"><%= errors.password[0] %></small>
-      <% } %>
-    </label>
-    <button type="submit" class="button button-primary">Continue</button>
-  </form>
-  <p class="muted">Need an account? <a href="/signup">Create one in minutes</a>.</p>
+<%- include('../partials/forms', { errors, values }) %>
+<section class="auth-layout">
+  <div class="auth-layout__intro">
+    <span class="eyebrow">Welcome back</span>
+    <h1 class="display">Sign in to continue</h1>
+    <p class="lede">Access your dashboard, refresh your comp card, and keep your book in sync with every update.</p>
+    <ul class="auth-benefits">
+      <li>Generate editorial comp cards on demand</li>
+      <li>Manage imagery and curated bios</li>
+      <li>Share polished portfolios with agencies</li>
+    </ul>
+  </div>
+  <div class="auth-card" role="form">
+    <form method="post" action="/login" class="form" data-async>
+      <input type="hidden" name="next" value="<%= valueFor('next', '') %>">
+      <div class="form-field <%= fieldError('email') ? 'has-error' : '' %>">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required value="<%= valueFor('email', '') %>">
+        <% if (fieldError('email')) { %>
+          <p class="field-error" role="alert"><%= fieldError('email') %></p>
+        <% } %>
+      </div>
+      <div class="form-field <%= fieldError('password') ? 'has-error' : '' %>">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <% if (fieldError('password')) { %>
+          <p class="field-error" role="alert"><%= fieldError('password') %></p>
+        <% } %>
+      </div>
+      <button type="submit" class="button button-primary button-block" data-loading-text="Signing in…">Sign in</button>
+    </form>
+    <p class="auth-switch">Need an account? <a href="/signup<%= valueFor('next') ? `?next=${encodeURIComponent(valueFor('next'))}` : '' %>">Create one</a>.</p>
+  </div>
 </section>

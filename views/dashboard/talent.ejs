@@ -1,43 +1,159 @@
-<section class="panel">
-  <header class="panel-header">
-    <h1>Welcome back, <%= profile.first_name %></h1>
-    <div class="panel-actions">
-      <a class="button" href="/portfolio/<%= profile.slug %>">View public profile</a>
-      <button type="button" class="button button-primary" data-generate-pdf data-slug="<%= profile.slug %>">Generate PDF</button>
-    </div>
-  </header>
-
-  <section class="grid two-col">
-    <div>
-      <h2>Profile completeness</h2>
-      <ul class="checklist">
-        <li class="<%= completeness.basics ? 'done' : '' %>">Vitals & bio</li>
-        <li class="<%= completeness.imagery ? 'done' : '' %>">Portfolio images</li>
-        <li class="<%= completeness.hero ? 'done' : '' %>">Cover image</li>
-      </ul>
+<%
+  const editDefaults = {
+    city: profile.city || '',
+    height_cm: profile.height_cm || '',
+    measurements: profile.measurements || '',
+    bio: profile.bio_raw || ''
+  };
+  const editValues = values ? { ...editDefaults, ...values } : editDefaults;
+%>
+<%- include('../partials/forms', { errors: formErrors || {}, values: editValues }) %>
+<section class="dashboard-hero">
+  <div class="dashboard-hero__media" aria-hidden="true">
+    <% if (profile.hero_image_path) { %>
+      <img src="<%= profile.hero_image_path %>" alt="" loading="lazy">
+    <% } else { %>
+      <div class="dashboard-hero__placeholder">Upload a hero image to showcase your look.</div>
+    <% } %>
+  </div>
+  <div class="dashboard-hero__copy">
+    <div class="dashboard-title">
+      <h1><%= profile.first_name %> <%= profile.last_name %></h1>
       <% if (profile.is_pro) { %>
-        <div class="badge badge-pro">PRO plan active</div>
-      <% } else { %>
-        <a class="button" href="/pro/upgrade">Go Pro</a>
+        <span class="badge badge-pro" aria-label="Pro account">PRO</span>
       <% } %>
-      <p class="muted">Share link: <code><%= shareUrl %></code></p>
-      <p class="muted">Stats: <%= stats.heightFeet %> • <%= profile.measurements %></p>
     </div>
+    <p class="dashboard-subtitle"><%= profile.city %> • <%= profile.height_cm %> cm (<%= stats.heightFeet %>) • <%= profile.measurements %></p>
+    <p class="dashboard-bio"><%= profile.bio_curated %></p>
+    <div class="completion-chips" role="list">
+      <span class="chip <%= completeness.basics ? 'is-complete' : '' %>" role="listitem">Profile basics</span>
+      <span class="chip <%= completeness.imagery ? 'is-complete' : '' %>" role="listitem">Imagery</span>
+      <span class="chip <%= completeness.hero ? 'is-complete' : '' %>" role="listitem">Hero image</span>
+    </div>
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-section__header">
     <div>
-      <h2>Media library</h2>
-      <form id="uploadForm" class="upload-form" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required>
-        <input type="text" name="label" placeholder="Label" aria-label="Image label">
-        <button type="submit" class="button">Upload</button>
-      </form>
-      <div class="media-grid">
-        <% images.forEach((item) => { %>
-          <figure>
-            <img src="<%= item.path %>" alt="<%= item.label || 'Portfolio image' %>">
-            <figcaption><%= item.label || 'Portfolio image' %></figcaption>
-          </figure>
-        <% }) %>
-      </div>
+      <h2>Actions</h2>
+      <p class="muted">Keep your book fresh and ready for agencies.</p>
     </div>
-  </section>
+    <div class="dashboard-actions">
+      <button class="button button-secondary" data-action="download-pdf" data-slug="<%= profile.slug %>">Generate PDF</button>
+      <a class="button button-secondary" href="/portfolio/<%= profile.slug %>" target="_blank" rel="noopener">View public portfolio</a>
+      <% if (!profile.is_pro) { %>
+        <a class="button button-primary" href="/pro/upgrade">Upgrade to Pro</a>
+      <% } else { %>
+        <span class="badge badge-muted">Watermark removed</span>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-section__header">
+    <div>
+      <h2>Profile details</h2>
+      <p class="muted">Edit stats and your curated biography. Changes reflect instantly on your portfolio and PDFs.</p>
+    </div>
+  </div>
+  <div class="dashboard-panel">
+    <form method="post" action="/dashboard/talent" class="form" data-async>
+      <div class="form-grid">
+        <div class="form-field <%= fieldError('city') ? 'has-error' : '' %>">
+          <label for="city">City</label>
+          <input id="city" name="city" value="<%= valueFor('city') %>" required>
+          <% if (fieldError('city')) { %>
+            <p class="field-error" role="alert"><%= fieldError('city') %></p>
+          <% } %>
+        </div>
+        <div class="form-field <%= fieldError('height_cm') ? 'has-error' : '' %>">
+          <label for="height_cm">Height (cm)</label>
+          <input id="height_cm" name="height_cm" type="number" min="120" max="220" value="<%= valueFor('height_cm') %>" required>
+          <% if (fieldError('height_cm')) { %>
+            <p class="field-error" role="alert"><%= fieldError('height_cm') %></p>
+          <% } %>
+        </div>
+      </div>
+      <div class="form-field <%= fieldError('measurements') ? 'has-error' : '' %>">
+        <label for="measurements">Measurements</label>
+        <input id="measurements" name="measurements" value="<%= valueFor('measurements') %>" required>
+        <% if (fieldError('measurements')) { %>
+          <p class="field-error" role="alert"><%= fieldError('measurements') %></p>
+        <% } %>
+      </div>
+      <div class="form-field <%= fieldError('bio') ? 'has-error' : '' %>">
+        <label for="bio">Curated bio</label>
+        <textarea id="bio" name="bio" rows="6" required><%= valueFor('bio') %></textarea>
+        <% if (fieldError('bio')) { %>
+          <p class="field-error" role="alert"><%= fieldError('bio') %></p>
+        <% } %>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="button button-primary" data-loading-text="Saving…">Save changes</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-section__header">
+    <div>
+      <h2>Images</h2>
+      <p class="muted">Upload up to six editorial images. Reorder them to control the comp card layout.</p>
+    </div>
+    <form id="mediaUploadForm" class="media-upload" enctype="multipart/form-data">
+      <input id="mediaUploadInput" type="file" name="file" accept="image/*" multiple hidden>
+      <button type="button" class="button button-primary" data-trigger-upload>Upload images</button>
+    </form>
+  </div>
+  <% if (!images.length) { %>
+    <div class="dashboard-panel empty-state">
+      <p>No images yet. Upload at least two to generate a polished comp card.</p>
+    </div>
+  <% } else { %>
+    <div class="media-grid" data-media-grid>
+      <% images.forEach((image, index) => { %>
+        <article class="media-card" data-media-id="<%= image.id %>">
+          <div class="media-thumb">
+            <img src="<%= image.path %>" alt="<%= image.label || 'Portfolio image' %>" loading="lazy">
+          </div>
+          <div class="media-meta">
+            <form class="media-label" data-media-label>
+              <label for="label-<%= image.id %>">Label</label>
+              <select id="label-<%= image.id %>" name="label">
+                <% const label = image.label || 'Portfolio image'; %>
+                <option value="Headshot" <%= /headshot/i.test(label) ? 'selected' : '' %>>Headshot</option>
+                <option value="Full length" <%= /full/i.test(label) ? 'selected' : '' %>>Full length</option>
+                <option value="Editorial" <%= /editorial/i.test(label) ? 'selected' : '' %>>Editorial</option>
+                <option value="Runway" <%= /runway/i.test(label) ? 'selected' : '' %>>Runway</option>
+                <option value="Portfolio image" <%= !/headshot|full|editorial|runway/i.test(label) ? 'selected' : '' %>>Portfolio image</option>
+              </select>
+              <input type="hidden" name="mediaId" value="<%= image.id %>">
+            </form>
+            <div class="media-controls">
+              <button type="button" class="button-ghost" data-media-move="up" aria-label="Move image up" <%= index === 0 ? 'disabled' : '' %>>↑</button>
+              <button type="button" class="button-ghost" data-media-move="down" aria-label="Move image down" <%= index === images.length - 1 ? 'disabled' : '' %>>↓</button>
+              <button type="button" class="button-ghost is-danger" data-media-delete aria-label="Remove image">Delete</button>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+    <div class="media-footer">
+      <p class="muted">Tip: drag or use the arrows to reorder. First image becomes your hero visual.</p>
+    </div>
+  <% } %>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-panel share-card">
+    <h2>Share your portfolio</h2>
+    <p>Copy your public link and send it to agencies, bookers, or clients. It updates every time you refresh your media.</p>
+    <div class="share-card__actions">
+      <code class="share-url" data-share-url><%= shareUrl %></code>
+      <button type="button" class="button button-secondary" data-copy-link data-copy-value="<%= shareUrl %>">Copy link</button>
+    </div>
+  </div>
 </section>

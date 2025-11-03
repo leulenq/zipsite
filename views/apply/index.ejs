@@ -1,61 +1,74 @@
-<section class="panel">
-  <h1>Start your application</h1>
-  <p class="muted">Complete the details below to save your talent profile.</p>
-  <form method="post" action="/apply" class="form-grid two-col">
-    <label>First name
-      <input type="text" name="first_name" value="<%= values.first_name || '' %>" required>
-      <% if (errors && errors.first_name) { %>
-        <small class="field-error"><%= errors.first_name[0] %></small>
-      <% } %>
-    </label>
-    <label>Last name
-      <input type="text" name="last_name" value="<%= values.last_name || '' %>" required>
-      <% if (errors && errors.last_name) { %>
-        <small class="field-error"><%= errors.last_name[0] %></small>
-      <% } %>
-    </label>
-    <label>Email
-      <input type="email" name="email" value="<%= values.email || '' %>" required>
-      <% if (errors && errors.email) { %>
-        <small class="field-error"><%= errors.email[0] %></small>
-      <% } %>
-    </label>
-    <label>Password
-      <input type="password" name="password" required>
-      <% if (errors && errors.password) { %>
-        <small class="field-error"><%= errors.password[0] %></small>
-      <% } %>
-    </label>
-    <label>City
-      <input type="text" name="city" value="<%= values.city || '' %>" required>
-      <% if (errors && errors.city) { %>
-        <small class="field-error"><%= errors.city[0] %></small>
-      <% } %>
-    </label>
-    <label>Height (cm)
-      <input type="number" name="height_cm" min="120" max="220" value="<%= values.height_cm || '' %>" required>
-      <% if (errors && errors.height_cm) { %>
-        <small class="field-error"><%= errors.height_cm[0] %></small>
-      <% } %>
-    </label>
-    <label>Measurements
-      <input type="text" name="measurements" value="<%= values.measurements || '' %>" placeholder="32-24-34" required>
-      <% if (errors && errors.measurements) { %>
-        <small class="field-error"><%= errors.measurements[0] %></small>
-      <% } %>
-    </label>
-    <label>Partner agency email <span class="muted">(optional)</span>
-      <input type="email" name="partner_agency_email" value="<%= values.partner_agency_email || '' %>">
-      <% if (errors && errors.partner_agency_email) { %>
-        <small class="field-error"><%= errors.partner_agency_email[0] %></small>
-      <% } %>
-    </label>
-    <label class="full-width">Bio
-      <textarea name="bio" rows="4" placeholder="Tell us about your editorial focus." required><%= values.bio || '' %></textarea>
-      <% if (errors && errors.bio) { %>
-        <small class="field-error"><%= errors.bio[0] %></small>
-      <% } %>
-    </label>
-    <button type="submit" class="button button-primary">Submit application</button>
-  </form>
+<%- include('../partials/forms', { errors, values }) %>
+<section class="apply-layout">
+  <div class="apply-intro">
+    <span class="eyebrow">Application</span>
+    <h1 class="display">Curate your ZipSite presence</h1>
+    <p class="lede">Tell us about your look, stats, and story so we can craft an editorial-grade comp card for you. You can refine everything later inside the dashboard.</p>
+    <ol class="apply-steps">
+      <li class="is-complete">Basics</li>
+      <li class="is-complete">Measurements</li>
+      <li class="is-active">Curated bio</li>
+    </ol>
+  </div>
+  <div class="apply-card">
+    <form method="post" action="/apply" class="form" data-async>
+      <div class="form-grid">
+        <div class="form-field <%= fieldError('first_name') ? 'has-error' : '' %>">
+          <label for="first_name">First name</label>
+          <input id="first_name" name="first_name" value="<%= valueFor('first_name', '') %>" required>
+          <% if (fieldError('first_name')) { %>
+            <p class="field-error" role="alert"><%= fieldError('first_name') %></p>
+          <% } %>
+        </div>
+        <div class="form-field <%= fieldError('last_name') ? 'has-error' : '' %>">
+          <label for="last_name">Last name</label>
+          <input id="last_name" name="last_name" value="<%= valueFor('last_name', '') %>" required>
+          <% if (fieldError('last_name')) { %>
+            <p class="field-error" role="alert"><%= fieldError('last_name') %></p>
+          <% } %>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-field <%= fieldError('city') ? 'has-error' : '' %>">
+          <label for="city">City</label>
+          <input id="city" name="city" value="<%= valueFor('city', '') %>" placeholder="New York, NY" required>
+          <% if (fieldError('city')) { %>
+            <p class="field-error" role="alert"><%= fieldError('city') %></p>
+          <% } %>
+        </div>
+        <div class="form-field <%= fieldError('height_cm') ? 'has-error' : '' %>">
+          <label for="height_cm">Height (cm)</label>
+          <input id="height_cm" name="height_cm" type="number" min="120" max="220" value="<%= valueFor('height_cm', '') %>" required>
+          <% if (fieldError('height_cm')) { %>
+            <p class="field-error" role="alert"><%= fieldError('height_cm') %></p>
+          <% } %>
+        </div>
+      </div>
+      <div class="form-field <%= fieldError('measurements') ? 'has-error' : '' %>">
+        <label for="measurements">Measurements</label>
+        <input id="measurements" name="measurements" value="<%= valueFor('measurements', '') %>" placeholder="32-24-34" required>
+        <% if (fieldError('measurements')) { %>
+          <p class="field-error" role="alert"><%= fieldError('measurements') %></p>
+        <% } %>
+      </div>
+      <div class="form-field <%= fieldError('partner_agency_email') ? 'has-error' : '' %>">
+        <label for="partner_agency_email">Partner agency email <span class="muted">(optional)</span></label>
+        <input id="partner_agency_email" name="partner_agency_email" type="email" value="<%= valueFor('partner_agency_email', '') %>">
+        <% if (fieldError('partner_agency_email')) { %>
+          <p class="field-error" role="alert"><%= fieldError('partner_agency_email') %></p>
+        <% } %>
+      </div>
+      <div class="form-field <%= fieldError('bio') ? 'has-error' : '' %>">
+        <label for="bio">Curated bio</label>
+        <textarea id="bio" name="bio" rows="5" required placeholder="Share highlights, runway experience, and editorial focus."><%= valueFor('bio', '') %></textarea>
+        <% if (fieldError('bio')) { %>
+          <p class="field-error" role="alert"><%= fieldError('bio') %></p>
+        <% } %>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="button button-primary button-block" data-loading-text="Saving application…">Submit application</button>
+      </div>
+    </form>
+    <p class="apply-note">Uploads happen next—have 2-6 high-resolution portraits ready for the dashboard.</p>
+  </div>
 </section>

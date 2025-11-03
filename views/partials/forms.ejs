@@ -1,0 +1,12 @@
+<%
+  const fieldError = (name) => {
+    if (!errors) return null;
+    const list = errors[name];
+    return Array.isArray(list) ? list[0] : null;
+  };
+  const valueFor = (name, fallback = '') => {
+    if (!values || typeof values !== 'object') return fallback;
+    if (values[name] === undefined || values[name] === null) return fallback;
+    return values[name];
+  };
+%>

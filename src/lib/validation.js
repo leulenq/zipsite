@@ -32,35 +32,48 @@ const signupSchema = z.object({
   role: roleSchema
 });
 
-const applySchema = z
+const heightSchema = z
+  .preprocess((val) => (typeof val === 'string' ? val.trim() : val), z.string().min(1))
+  .transform((val) => parseInt(val, 10))
+  .refine((val) => Number.isFinite(val) && val >= 120 && val <= 220, {
+    message: 'Provide height in cm between 120 and 220'
+  });
+
+const bioSchema = z
+  .string({ required_error: 'Bio required' })
+  .trim()
+  .min(10, 'Tell us more so we can curate')
+  .max(600, 'Bio is too long');
+
+const measurementsSchema = z
+  .string({ required_error: 'Measurements required' })
+  .trim()
+  .min(2, 'Measurements required')
+  .max(60, 'Too long');
+
+const applyProfileSchema = z
   .object({
     first_name: nameSchema,
     last_name: nameSchema,
-    email: emailSchema,
-    password: passwordSchema,
     city: nameSchema,
-    height_cm: z
-      .preprocess((val) => (typeof val === 'string' ? val.trim() : val), z.string().min(1))
-      .transform((val) => parseInt(val, 10))
-      .refine((val) => Number.isFinite(val) && val >= 120 && val <= 220, {
-        message: 'Provide height in cm between 120 and 220'
-      }),
-    measurements: z
-      .string({ required_error: 'Measurements required' })
-      .trim()
-      .min(2, 'Measurements required')
-      .max(60, 'Too long'),
-    bio: z
-      .string({ required_error: 'Bio required' })
-      .trim()
-      .min(10, 'Tell us more so we can curate')
-      .max(600, 'Bio is too long'),
+    height_cm: heightSchema,
+    measurements: measurementsSchema,
+    bio: bioSchema,
     partner_agency_email: z
       .string()
       .trim()
       .optional()
       .transform((val) => (val ? val.toLowerCase() : undefined))
       .refine((val) => !val || /@/.test(val), { message: 'Enter a valid email' })
+  })
+  .strict();
+
+const talentProfileUpdateSchema = z
+  .object({
+    city: nameSchema,
+    height_cm: heightSchema,
+    measurements: measurementsSchema,
+    bio: bioSchema
   })
   .strict();
 
@@ -71,6 +84,7 @@ const partnerClaimSchema = z.object({
 module.exports = {
   loginSchema,
   signupSchema,
-  applySchema,
+  applyProfileSchema,
+  talentProfileUpdateSchema,
   partnerClaimSchema
 };

@@ -1,8 +1,7 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const knex = require('../db/knex');
-const { applySchema } = require('../lib/validation');
+const { applyProfileSchema } = require('../lib/validation');
 const { normalizeMeasurements, curateBio } = require('../lib/curate');
 const { ensureUniqueSlug } = require('../lib/slugify');
 const { addMessage } = require('../middleware/context');
@@ -10,6 +9,10 @@ const { addMessage } = require('../middleware/context');
 const router = express.Router();
 
 router.get('/apply', (req, res) => {
+  if (!req.currentUser) {
+    return res.redirect(`/signup?next=${encodeURIComponent('/apply')}`);
+  }
+
   const defaults = req.currentProfile
     ? {
         first_name: req.currentProfile.first_name,
@@ -18,9 +21,17 @@ router.get('/apply', (req, res) => {
         measurements: req.currentProfile.measurements,
         height_cm: req.currentProfile.height_cm,
         bio: req.currentProfile.bio_raw,
-        email: req.currentUser?.email
+        partner_agency_email: ''
       }
-    : {};
+    : {
+        first_name: '',
+        last_name: '',
+        city: '',
+        measurements: '',
+        height_cm: '',
+        bio: '',
+        partner_agency_email: ''
+      };
 
   return res.render('apply/index', {
     title: 'Start your ZipSite profile',
@@ -30,7 +41,11 @@ router.get('/apply', (req, res) => {
 });
 
 router.post('/apply', async (req, res, next) => {
-  const parsed = applySchema.safeParse(req.body);
+  if (!req.currentUser) {
+    return res.redirect(`/signup?next=${encodeURIComponent('/apply')}`);
+  }
+
+  const parsed = applyProfileSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(422).render('apply/index', {
       title: 'Start your ZipSite profile',
@@ -42,8 +57,6 @@ router.post('/apply', async (req, res, next) => {
   const {
     first_name,
     last_name,
-    email,
-    password,
     city,
     height_cm,
     measurements,
@@ -52,33 +65,10 @@ router.post('/apply', async (req, res, next) => {
   } = parsed.data;
 
   try {
-    let user = await knex('users').where({ email }).first();
-    if (user) {
-      if (user.role !== 'TALENT') {
-        return res.status(422).render('apply/index', {
-          title: 'Start your ZipSite profile',
-          values: req.body,
-          errors: { email: ['That email is already registered as an agency.'] }
-        });
-      }
-      const valid = await bcrypt.compare(password, user.password_hash);
-      if (!valid) {
-        return res.status(401).render('apply/index', {
-          title: 'Start your ZipSite profile',
-          values: req.body,
-          errors: { password: ['Incorrect password for existing account.'] }
-        });
-      }
-    } else {
-      const passwordHash = await bcrypt.hash(password, 10);
-      const userId = uuidv4();
-      await knex('users').insert({
-        id: userId,
-        email,
-        password_hash: passwordHash,
-        role: 'TALENT'
-      });
-      user = await knex('users').where({ id: userId }).first();
+    const user = await knex('users').where({ id: req.currentUser.id }).first();
+    if (!user || user.role !== 'TALENT') {
+      addMessage(req, 'error', 'Only talent accounts can submit applications.');
+      return res.redirect('/');
     }
 
     let partnerAgencyId = null;
@@ -99,6 +89,10 @@ router.post('/apply', async (req, res, next) => {
     const cleanedMeasurements = normalizeMeasurements(measurements);
 
     if (existingProfile) {
+      let slug = existingProfile.slug;
+      if (!slug) {
+        slug = await ensureUniqueSlug(knex, 'profiles', `${first_name}-${last_name}`);
+      }
       await knex('profiles')
         .where({ id: existingProfile.id })
         .update({
@@ -110,6 +104,7 @@ router.post('/apply', async (req, res, next) => {
           bio_raw: bio,
           bio_curated: curatedBio,
           partner_agency_id: partnerAgencyId,
+          slug,
           updated_at: knex.fn.now()
         });
     } else {
@@ -128,9 +123,6 @@ router.post('/apply', async (req, res, next) => {
         partner_agency_id: partnerAgencyId
       });
     }
-
-    req.session.userId = user.id;
-    req.session.role = 'TALENT';
 
     const profile = await knex('profiles').where({ user_id: user.id }).first();
     addMessage(req, 'success', 'Application saved! Upload media to finish your comp card.');
