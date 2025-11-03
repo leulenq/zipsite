@@ -1,0 +1,28 @@
+<section class="panel">
+  <h1>Start your application</h1>
+  <p class="muted">Complete the details below to save your talent profile.</p>
+  <form method="post" action="/apply" class="form-grid two-col">
+    <label>First name
+      <input type="text" name="first_name" required>
+    </label>
+    <label>Last name
+      <input type="text" name="last_name" required>
+    </label>
+    <label>Email
+      <input type="email" name="email" required>
+    </label>
+    <label>City
+      <input type="text" name="city">
+    </label>
+    <label>Height (cm)
+      <input type="number" name="height_cm" min="120" max="220">
+    </label>
+    <label>Measurements
+      <input type="text" name="measurements" placeholder="32-24-34">
+    </label>
+    <label class="full-width">Bio
+      <textarea name="bio" rows="4" placeholder="Tell us about your editorial focus."></textarea>
+    </label>
+    <button type="submit" class="button button-primary">Submit application</button>
+  </form>
+</section>

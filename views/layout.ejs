@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title ? title + ' — ZipSite' : 'ZipSite' %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/global.css">
+  <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+<body class="dashboard-shell">
+  <header class="dash-header">
+    <a class="dash-logo" href="/">ZipSite</a>
+    <nav>
+      <% if (currentUser) { %>
+        <span class="dash-user"><%= currentUser.email %> • <%= currentUser.role %></span>
+        <form action="/logout" method="post" style="display:inline;">
+          <button class="button-link" type="submit">Sign out</button>
+        </form>
+      <% } else { %>
+        <a href="/login">Sign in</a>
+      <% } %>
+    </nav>
+  </header>
+  <main class="dash-main">
+    <% if (messages && messages.length) { %>
+      <div class="flash-group">
+        <% messages.forEach((message) => { %>
+          <div class="flash flash-<%= message.type %>"><%= message.text %></div>
+        <% }); %>
+      </div>
+    <% } %>
+    <%- body %>
+  </main>
+  <script src="/scripts/wire.js"></script>
+</body>
+</html>
