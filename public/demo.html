@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Demo — ZipSite</title>
+  <meta name="description" content="Explore the ZipSite live demo: alphabetical board, talent profile template, and interactive gallery with skeleton loading.">
+  <link rel="canonical" href="https://zipsite.example.com/demo">
+  <link rel="stylesheet" href="/styles/global.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container inner">
+      <a class="brand" href="/">ZipSite</a>
+      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+      <nav class="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/how">How It Works</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/demo" aria-current="page">Demo</a></li>
+          <li><a href="/press">Press</a></li>
+          <li><a href="/legal">Legal</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-nav-panel" id="mobileNav" hidden>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/how">How It Works</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/demo">Demo</a></li>
+          <li><a href="/press">Press</a></li>
+          <li><a href="/legal">Legal</a></li>
+          <li><a class="button button-primary" href="/apply">Apply</a></li>
+        </ul>
+      </div>
+      <a class="button button-secondary" href="/apply">Apply</a>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" style="padding-bottom:3rem;">
+      <div class="container hero-grid">
+        <div class="hero-copy motion-reveal">
+          <span class="badge">Live preview</span>
+          <h1>A digital board without the clutter.</h1>
+          <p>Browse a cinematic grid, open a template portfolio, and export a comp card — all powered by the same data model.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/portfolio/?name=Natan%20Barrera">View sample portfolio</a>
+            <a class="button button-secondary" href="/comp-card/">Open comp card</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="board-demo">
+      <div class="container">
+        <div class="section-heading motion-reveal">
+          <h2 id="board-demo">Alphabetical roster</h2>
+          <p>The board viewer mirrors agency workflows: A–Z filters, skeleton loading, and minimal UI so talent imagery leads.</p>
+        </div>
+        <div class="board-index motion-reveal" role="tablist" aria-label="Demo talent index">
+          <button class="active" data-letter="all" role="tab" aria-selected="true">All</button>
+          <button data-letter="a" role="tab">A</button>
+          <button data-letter="b" role="tab">B</button>
+          <button data-letter="c" role="tab">C</button>
+          <button data-letter="d" role="tab">D</button>
+          <button data-letter="e" role="tab">E</button>
+          <button data-letter="f" role="tab">F</button>
+          <button data-letter="g" role="tab">G</button>
+          <button data-letter="h" role="tab">H</button>
+          <button data-letter="i" role="tab">I</button>
+          <button data-letter="j" role="tab">J</button>
+          <button data-letter="k" role="tab">K</button>
+          <button data-letter="l" role="tab">L</button>
+          <button data-letter="m" role="tab">M</button>
+          <button data-letter="n" role="tab">N</button>
+          <button data-letter="o" role="tab">O</button>
+          <button data-letter="p" role="tab">P</button>
+          <button data-letter="q" role="tab">Q</button>
+          <button data-letter="r" role="tab">R</button>
+          <button data-letter="s" role="tab">S</button>
+          <button data-letter="t" role="tab">T</button>
+          <button data-letter="u" role="tab">U</button>
+          <button data-letter="v" role="tab">V</button>
+          <button data-letter="w" role="tab">W</button>
+          <button data-letter="x" role="tab">X</button>
+          <button data-letter="y" role="tab">Y</button>
+          <button data-letter="z" role="tab">Z</button>
+        </div>
+        <div class="board-grid" id="demoBoard" aria-live="polite">
+          <!-- Cards injected via gallery.js -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="actions">
+      <div class="container">
+        <div class="section-heading motion-reveal">
+          <h2 id="actions">What you can try</h2>
+          <p>Every interaction mirrors the production product so you can experience the flow end to end.</p>
+        </div>
+        <div class="grid cols-3">
+          <article class="card motion-reveal" data-delay="40">
+            <h3>Open a profile</h3>
+            <p>Select any talent in the grid to jump to the portfolio template with stats, bio, and booking actions.</p>
+          </article>
+          <article class="card motion-reveal" data-delay="80">
+            <h3>Download the PDF</h3>
+            <p>Use the comp card route to export a 5.5 × 8.5 inch PDF with watermark logic for free tier talent.</p>
+          </article>
+          <article class="card motion-reveal" data-delay="120">
+            <h3>Browse responsively</h3>
+            <p>Resize the viewport to see sticky nav, accessible focus states, and grayscale-to-color transitions.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand">ZipSite</div>
+        <p class="footer-small">Editorial-grade portfolios, curated by AI.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/press">Press</a></li>
+          <li><a href="/legal">Legal</a></li>
+          <li><a href="mailto:press@zipsite.com">press@zipsite.com</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  <script src="/scripts/gallery.js" defer></script>
+  <script src="/scripts/main.js" defer></script>
+  <script src="/scripts/wire.js"></script>
+</body>
+</html>
