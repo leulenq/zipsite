@@ -1,0 +1,28 @@
+<section class="panel auth-panel">
+  <h1><%= role === 'AGENCY' ? 'Join as an Agency' : 'Create talent account' %></h1>
+  <form method="post" action="/register" class="form-stack">
+    <input type="hidden" name="role" value="<%= role %>">
+    <label>Email
+      <input type="email" name="email" required>
+    </label>
+    <label>Password
+      <input type="password" name="password" required>
+    </label>
+    <label>First name
+      <input type="text" name="first_name" required>
+    </label>
+    <label>Last name
+      <input type="text" name="last_name" required>
+    </label>
+    <% if (role === 'AGENCY') { %>
+      <label>Agency name
+        <input type="text" name="name" required>
+      </label>
+      <label>Partner code
+        <input type="text" name="partner_code" placeholder="ZIP-AGENCY" required>
+      </label>
+    <% } %>
+    <button type="submit" class="button button-primary">Create account</button>
+  </form>
+  <p class="muted"><a href="/login">Have an account? Sign in</a></p>
+</section>

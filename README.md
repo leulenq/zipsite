@@ -1,83 +1,53 @@
-# ZipSite Editorial Experience
+# ZipSite Platform
 
-A static prototype of the ZipSite marketing site, application flow, portfolio template, and comp card export. The aesthetic blends New York model agency minimalism with an AI-driven product narrative.
+ZipSite is an Express + SQLite application that powers the marketing site, application flow, curated dashboards, and printable comp-card PDFs.
 
-## Structure
+## Requirements
 
-```
-/
-├─ index.html               # Home
-├─ features.html            # Product pillars
-├─ how.html                 # Capture → Curate → Present process
-├─ pricing.html             # Free vs Pro comparison
-├─ demo.html                # Interactive board preview
-├─ press.html               # Press kit & contact
-├─ legal.html               # Policy pages
-├─ apply/                   # Multi-step talent application
-├─ portfolio/               # Talent portfolio template
-├─ comp-card/               # Dedicated 5.5 × 8.5 in comp card
-├─ styles/                  # global + print stylesheets
-├─ scripts/                 # UI behaviour and PDF tooling
-└─ assets/                  # Placeholder for brand assets
-```
+- Node.js 20
+- SQLite3 (bundled with Node via `sqlite3`)
+- Chromium dependencies for Puppeteer (already bundled)
 
-## Local preview
-
-Because the project is static HTML + CSS + JS, any HTTP server works. A quick option:
+## Setup
 
 ```bash
-npx serve .
+npm install
+cp .env.example .env
+npm run migrate
+npm run seed
+npm start
 ```
 
-Or use Python:
+Default environment variables (override in `.env`):
 
-```bash
-python3 -m http.server 8000
-```
+- `PORT=3000`
+- `SESSION_SECRET=change-me`
+- `DATABASE_URL=sqlite://./dev.sqlite3`
+- `DATABASE_CLIENT=sqlite3` (set to `pg` for Postgres)
+- `COMMISSION_RATE=0.25`
+- `PDF_BASE_URL=http://localhost:3000`
 
-Visit `http://localhost:8000/`.
+### Sample accounts
 
-## Client-side comp card export
+- Talent: `talent@example.com` / `password123`
+- Agency: `agency@example.com` / `password123`
 
-1. Navigate to `/comp-card/` in the browser.
-2. Optionally pass query params to personalise: `?name=River%20King&stat=Height:6'1"&tier=pro`.
-3. Use the **Toggle Free / Pro** button to show or hide the watermark.
-4. Click **Download PDF**. html2canvas + jsPDF render the comp-card DOM into `ZipSite_CompCard_{Name}.pdf` with metadata (title, author, subject).
+Uploaded demo assets live at `/uploads/seed`.
 
-## Server / CLI export with Puppeteer
+## Scripts
 
-The repository includes `scripts/render-pdf.js` for high-fidelity output (300 dpi equivalent).
+- `npm start` – launch the Express server
+- `npm run migrate` – apply database migrations via Knex
+- `npm run seed` – load seed data
+- `npm test` – run API integration tests with Jest + Supertest
 
-```bash
-npm install puppeteer
-node scripts/render-pdf.js "http://localhost:8000/comp-card/" ./out.pdf "Natan Barrera" pro
-```
+## Testing
 
-Arguments:
+The test suite exercises:
 
-1. `comp-card` URL (must be reachable from the machine running Puppeteer).
-2. Optional path to save the PDF.
-3. Optional talent name for the filename and query string.
-4. Optional tier (`free` or `pro`).
+1. Authentication (login/logout)
+2. Talent application -> upload -> curate -> PDF generation
+3. Upgrade flow toggling `is_pro`
+4. Agency commission creation when claiming + upgrading
 
-The script honours the watermark logic (hidden for `pro`).
-
-## Application flow
-
-* `/apply/` hosts a four-step form with validation, drag-and-drop photo handling, and a review summary. 
-* Keyboard navigation is supported; the current step is marked with `aria-current="step"`.
-
-## Portfolio template
-
-* `/portfolio/` accepts `name`, `tier`, or a JSON-encoded `profile` query parameter to populate stats, gallery, and experience.
-* Images load lazily with skeleton placeholders.
-* Sticky CTAs provide **Download PDF** and **Book talent** actions.
-
-## Accessibility & motion
-
-* Skip link, focus-visible outlines, and high-contrast monochrome palette for AA compliance.
-* IntersectionObserver powers 200–320 ms fade/translate reveals while respecting `prefers-reduced-motion`.
-
-## Assets
-
-Remote photography references use royalty-free Unsplash links for prototyping. Replace with licensed agency assets before production.
+Run with `npm test`.

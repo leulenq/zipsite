@@ -1,0 +1,49 @@
+<section class="panel">
+  <header class="panel-header">
+    <h1>Welcome back, <%= profile.first_name %></h1>
+    <div class="panel-actions">
+      <a class="button" href="/portfolio/<%= profile.slug %>">View public profile</a>
+      <form action="/pdf/<%= profile.slug %>?download=1" method="get">
+        <button type="submit" class="button button-primary" data-generate-pdf data-slug="<%= profile.slug %>">Generate PDF</button>
+      </form>
+    </div>
+  </header>
+
+  <section class="grid two-col">
+    <div>
+      <h2>Profile completeness</h2>
+      <ul class="checklist">
+        <li class="<%= completeness.basics ? 'done' : '' %>">Vitals</li>
+        <li class="<%= completeness.media ? 'done' : '' %>">Media uploaded</li>
+        <li class="<%= completeness.curated ? 'done' : '' %>">Curated</li>
+      </ul>
+      <% if (subscription && subscription.plan === 'PRO') { %>
+        <div class="badge badge-pro">PRO plan active</div>
+      <% } else { %>
+        <a class="button" href="/pro/upgrade">Go Pro</a>
+      <% } %>
+      <p class="muted">Copy portfolio link: <code><%= request.protocol %>://<%= request.get('host') %>/portfolio/<%= profile.slug %></code></p>
+    </div>
+    <div>
+      <h2>Media library</h2>
+      <form id="uploadForm" class="upload-form" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <select name="kind">
+          <option value="HEADSHOT">Headshot</option>
+          <option value="FULL">Full length</option>
+          <option value="DIGITAL">Digitals</option>
+          <option value="REEL">Reel</option>
+        </select>
+        <button type="submit" class="button">Upload</button>
+      </form>
+      <div class="media-grid">
+        <% media.forEach((item) => { %>
+          <figure>
+            <img src="<%= item.path %>" alt="<%= item.label %>">
+            <figcaption><%= item.label %> • <%= item.kind %></figcaption>
+          </figure>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+</section>

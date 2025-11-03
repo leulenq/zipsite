@@ -1,0 +1,11 @@
+<section class="panel">
+  <h1>Upgrade to ZipSite Pro</h1>
+  <p>Unlock the full live portfolio with booking CTAs and remove PDF watermark.</p>
+  <form method="post" action="/pro/upgrade" class="form-stack">
+    <p class="price-display">$<%= price.toFixed(2) %>/month</p>
+    <button type="submit" class="button button-primary">Confirm upgrade</button>
+  </form>
+  <% if (profile && profile.partner_code_claimed) { %>
+    <p class="muted">Partner code <strong><%= profile.partner_code_claimed %></strong> will receive <%= (config.commissionRate * 100).toFixed(0) %>% commission.</p>
+  <% } %>
+</section>
