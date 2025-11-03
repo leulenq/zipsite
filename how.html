@@ -3,177 +3,154 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>How ZipSite Works — Capture. Curate. Present.</title>
-  <meta name="description" content="Understand the ZipSite workflow: upload, AI curation, standardized storage, and premium delivery for talent and agencies.">
-  <link rel="canonical" href="https://zipsite.example/how.html">
+  <title>How ZipSite Works</title>
+  <meta name="description" content="See how ZipSite captures talent data, curates bios with AI, and presents editorial-ready portfolios across PDF and web.">
+  <link rel="canonical" href="https://zipsite.example.com/how.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/global.css">
 </head>
-<body class="page">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" data-component="header">
-    <div class="inner">
-      <a class="site-brand" href="index.html">
-        <img src="assets/logo-zipsite.svg" alt="ZipSite logo">
-        <span>ZipSite</span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="features.html">Features</a>
-        <a href="how.html" aria-current="page">How it Works</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="demo.html">Demo</a>
-        <a href="press.html">Press</a>
+  <header class="site-header">
+    <div class="container inner">
+      <a class="brand" href="/">ZipSite</a>
+      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+      <nav class="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/features.html">Features</a></li>
+          <li><a href="/how.html" aria-current="page">How It Works</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/demo.html">Demo</a></li>
+          <li><a href="/press.html">Press</a></li>
+          <li><a href="/legal.html">Legal</a></li>
+        </ul>
       </nav>
-      <div class="nav-actions">
-        <a class="btn btn-outline" href="apply/index.html">Start Free PDF</a>
-        <a class="btn btn-primary" href="pricing.html#premium">Go Pro</a>
+      <div class="mobile-nav-panel" id="mobileNav" hidden>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/features.html">Features</a></li>
+          <li><a href="/how.html">How It Works</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/demo.html">Demo</a></li>
+          <li><a href="/press.html">Press</a></li>
+          <li><a href="/legal.html">Legal</a></li>
+          <li><a class="button button-primary" href="/apply/">Apply</a></li>
+        </ul>
       </div>
-      <button class="mobile-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
-        <span></span>
-      </button>
+      <a class="button button-secondary" href="/apply/">Apply</a>
     </div>
   </header>
-  <nav id="mobile-nav" class="mobile-nav" aria-hidden="true" aria-label="Mobile">
-    <a href="index.html">Home</a>
-    <a href="features.html">Features</a>
-    <a href="how.html" aria-current="page">How it Works</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="demo.html">Demo</a>
-    <a href="press.html">Press</a>
-    <a href="apply/index.html">Start Free PDF</a>
-  </nav>
   <main id="main">
-    <section class="hero" style="padding-bottom:60px;">
-      <div class="hero-copy fade-in">
-        <span class="hero-eyebrow">Workflow</span>
-        <h1>Capture, curate, and deliver in one editorial flow.</h1>
-        <p>ZipSite orchestrates every step from raw submission to polished portfolio, keeping talent empowered and agencies in control.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="apply/index.html">Start My Free Application</a>
-          <a class="btn btn-outline" href="#journey">See the Journey</a>
+    <section class="hero" style="padding-bottom:3rem;">
+      <div class="container hero-grid">
+        <div class="hero-copy motion-reveal">
+          <span class="badge">Process</span>
+          <h1>Automation designed for bookers.</h1>
+          <p>The ZipSite pipeline moves from talent intake to agency-ready deliverables in minutes. No spreadsheets, no email backlogs, just clean editorial output.</p>
         </div>
+        <figure class="hero-media motion-reveal" data-delay="100">
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80" alt="Model review session" loading="lazy" decoding="async">
+        </figure>
       </div>
-      <div class="hero-visual fade-in" data-delay="120">
-        <div class="after" data-label="Automation">
-          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80" alt="ZipSite workflow diagram">
-          <div class="details">
-            <div class="stats">
-              <span class="pill pill-accent">Capture</span>
-              <span class="pill">Curate</span>
-              <span class="pill">Deliver</span>
+    </section>
+
+    <section class="section" aria-labelledby="capture">
+      <div class="container">
+        <div class="section-heading motion-reveal">
+          <h2 id="capture">1. Capture</h2>
+          <p>Talent apply through a multi-step flow purpose-built for agencies. Fields stay structured, and drag-and-drop uploads keep media organized.</p>
+        </div>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:3rem; align-items:start;">
+          <div class="motion-reveal">
+            <h3>Vitals & measurements</h3>
+            <p class="muted">Height, size, and location inputs normalize automatically, ensuring consistent format across your roster.</p>
+            <h3>Image discipline</h3>
+            <p class="muted">Applicants tag each asset (Headshot, Beauty, Full Length) while the system enforces dimension and file-size guidance.</p>
+          </div>
+          <div class="motion-reveal" data-delay="120">
+            <div class="card">
+              <h3>Intake highlights</h3>
+              <ul style="list-style:none; padding:0; margin:0; display:grid; gap:1rem; color:var(--color-muted);">
+                <li>• Drag & drop or direct upload</li>
+                <li>• Inline validation & hints</li>
+                <li>• Save progress tokens</li>
+                <li>• Accessible controls for every field</li>
+              </ul>
             </div>
-            <h3>Automation with taste</h3>
-            <p>Every touchpoint is styled like an editorial campaign while the AI engine keeps the data immaculate.</p>
-            <ul>
-              <li>Groq inference under one second</li>
-              <li>Structured profile storage</li>
-              <li>Portfolio templates synced with database</li>
-            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="journey" class="section fade-in" data-delay="80">
-      <div class="inner">
-        <header class="section-header">
-          <div>
-            <span class="section-eyebrow">The Automated Journey</span>
-            <h2 class="section-title">From raw uploads to pro-ready presence</h2>
+    <section class="section" aria-labelledby="curate">
+      <div class="container">
+        <div class="section-heading motion-reveal">
+          <h2 id="curate">2. Curate</h2>
+          <p>Groq-powered AI rewrites bios in the third person, enforces tonal consistency, and standardizes stats so every profile reads like a trusted comp.</p>
+        </div>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap:3rem; align-items:center;">
+          <div class="motion-reveal">
+            <h3>Language refinement</h3>
+            <p class="muted">Friendly prompts transform informal copy into polished editorial prose that fits your brand voice.</p>
+            <h3>Structured data</h3>
+            <p class="muted">Measurements, city names, and pronouns align to your style guide before they reach an agent.</p>
           </div>
-          <p class="section-body">One template, infinite possibilities. We designed a consistent experience that scales to thousands of talent profiles without losing editorial integrity.</p>
-        </header>
-        <div class="journey-grid">
-          <article class="journey-step" data-step="01">
-            <h3>Capture</h3>
-            <p>Talent submit their vitals, raw bio, and labeled imagery. Our drag-and-drop interface supports bulk uploads and mobile-first flows.</p>
-          </article>
-          <article class="journey-step" data-step="02">
-            <h3>Curate</h3>
-            <p>The Groq-powered Brain rewrites copy, normalizes stats, and arranges galleries. Structured metadata flows into the portfolio template.</p>
-          </article>
-          <article class="journey-step" data-step="03">
-            <h3>Store</h3>
-            <p>Each profile is saved with version history, watermark rules, and CDN references for high-speed delivery.</p>
-          </article>
-          <article class="journey-step" data-step="04">
-            <h3>Present</h3>
-            <p>The Storefront delivers both the free comp card PDF and the $9.99/mo live site with Pro-only features, removing the watermark.</p>
-          </article>
+          <div class="motion-reveal" data-delay="120">
+            <div class="card">
+              <h3>Quality controls</h3>
+              <p class="muted">Human review toggles let your directors approve edge cases, while automated checks catch duplicates and missing media.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section fade-in" data-delay="120">
-      <div class="inner">
-        <header class="section-header">
-          <div>
-            <span class="section-eyebrow">Experience Design</span>
-            <h2 class="section-title">Quiet power meets measurable impact</h2>
+    <section class="section" aria-labelledby="present">
+      <div class="container">
+        <div class="section-heading motion-reveal">
+          <h2 id="present">3. Present</h2>
+          <p>The storefront template powers both the free comp card PDF and the pro portfolio link. Deliverables stay print-minded and ready for booking.</p>
+        </div>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:3rem; align-items:start;">
+          <div class="motion-reveal">
+            <h3>PDF comp card</h3>
+            <p class="muted">5.5 × 8.5 inch format with safe area, metadata, and watermark control. Ready for print or quick send.</p>
+            <h3>Live pro site</h3>
+            <p class="muted">Responsive layout, embedded reels, and contact CTAs. Subscribers unlock watermark-free presentation.</p>
           </div>
-          <p class="section-body">We obsess over transitions, spacing, and accessibility so your team doesn’t have to. Minimal UI, maximal intention.</p>
-        </header>
-        <div class="card-deck">
-          <article class="feature-card">
-            <div class="feature-icon">🪄</div>
-            <h3>Preferential Motion</h3>
-            <p>Micro-animations respect prefers-reduced-motion, keeping the experience elegant for every visitor.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>Performance Insights</h3>
-            <p>Track views, saves, and upgrade conversions directly in the agency dashboard with weekly summaries.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-icon">🔒</div>
-            <h3>Security First</h3>
-            <p>Role-based access, watermark toggles, and CDN-signed URLs keep your assets controlled and private.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section premium fade-in" data-delay="90">
-      <div class="inner">
-        <div class="copy">
-          <span class="section-eyebrow">For Agencies</span>
-          <h2>Standardized submissions with built-in recurring revenue.</h2>
-          <p>ZipSite replaces inbox chaos with a curated board. Earn 25% commission whenever your talent unlocks the Pro experience.</p>
-          <ul>
-            <li>Invite-only agency access with scout permissions</li>
-            <li>Monetize upgrades without additional work</li>
-            <li>Embed boards into casting workflows</li>
-            <li>API hooks for talent CRMs</li>
-          </ul>
-          <a class="btn btn-primary" href="pricing.html">Review Plans</a>
-        </div>
-        <div class="mockup-frame" aria-hidden="true">
-          <img class="laptop" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80" alt="Agency scouts reviewing ZipSite">
-          <img src="https://images.unsplash.com/photo-1499952127939-9bbf5af6ec07?auto=format&fit=crop&w=600&q=80" alt="Portfolio notes">
+          <div class="motion-reveal" data-delay="100">
+            <div class="card">
+              <h3>What agencies see</h3>
+              <ul style="list-style:none; padding:0; margin:0; display:grid; gap:1rem; color:var(--color-muted);">
+                <li>• Alphabetical board view</li>
+                <li>• Portfolio detail with stats & bio</li>
+                <li>• Sticky booking CTA</li>
+                <li>• Downloadable assets</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
   <footer class="site-footer">
-    <div class="inner">
-      <span>© 2025 ZipSite. All rights reserved.</span>
-      <div class="footer-links">
-        <a href="legal.html#privacy">Privacy Policy</a>
-        <a href="legal.html#terms">Terms of Service</a>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand">ZipSite</div>
+        <p class="footer-small">Editorial-grade portfolios, curated by AI.</p>
       </div>
-      <div class="social-links" aria-label="Social">
-        <a href="https://instagram.com" aria-label="Instagram">
-          <img src="assets/icons/instagram.svg" alt="Instagram icon">
-        </a>
-        <a href="https://linkedin.com" aria-label="LinkedIn">
-          <img src="assets/icons/linkedin.svg" alt="LinkedIn icon">
-        </a>
-      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/press.html">Press</a></li>
+          <li><a href="/legal.html">Legal</a></li>
+          <li><a href="mailto:press@zipsite.com">press@zipsite.com</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
-  <script src="scripts/main.js" defer></script>
+  <script src="/scripts/main.js" defer></script>
 </body>
 </html>

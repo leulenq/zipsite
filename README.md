@@ -1,87 +1,83 @@
-# ZipSite — Editorial AI Portfolio Experience
+# ZipSite Editorial Experience
 
-ZipSite blends the quiet luxury of a model agency with precision AI workflows. This repository contains a static, multi-page marketing site, an application flow, portfolio template, and comp-card export system.
+A static prototype of the ZipSite marketing site, application flow, portfolio template, and comp card export. The aesthetic blends New York model agency minimalism with an AI-driven product narrative.
 
 ## Structure
 
 ```
 /
-├── index.html              # Landing page
-├── features.html           # Feature deep dive
-├── how.html                # Automated workflow overview
-├── pricing.html            # Free vs Pro plans
-├── demo.html               # Interactive board + comp card preview
-├── press.html              # Press and partnership hub
-├── legal.html              # Privacy policy + terms
-├── apply/                  # Multi-step talent application
-├── portfolio/              # Dynamic portfolio template
-├── comp-card/              # Dedicated 5.5 × 8.5 in comp-card export
-├── assets/                 # Logo + icons
-├── styles/global.css       # Editorial UI system
-├── styles/print.css        # Print-focused comp-card styling
-├── scripts/                # Interaction + export utilities
-└── scripts/render-pdf.js   # Optional Puppeteer export script
+├─ index.html               # Home
+├─ features.html            # Product pillars
+├─ how.html                 # Capture → Curate → Present process
+├─ pricing.html             # Free vs Pro comparison
+├─ demo.html                # Interactive board preview
+├─ press.html               # Press kit & contact
+├─ legal.html               # Policy pages
+├─ apply/                   # Multi-step talent application
+├─ portfolio/               # Talent portfolio template
+├─ comp-card/               # Dedicated 5.5 × 8.5 in comp card
+├─ styles/                  # global + print stylesheets
+├─ scripts/                 # UI behaviour and PDF tooling
+└─ assets/                  # Placeholder for brand assets
 ```
 
-## Local Preview
+## Local preview
 
-Open `index.html` (or any HTML file) in your browser via a static server. For quick testing run:
+Because the project is static HTML + CSS + JS, any HTTP server works. A quick option:
 
 ```bash
 npx serve .
 ```
 
-This enables client-side routing for portfolio query parameters and ensures asset loading from remote CDNs is allowed.
-
-## Talent Application Flow
-
-- Navigate to `/apply/`.
-- Complete the four-step form (Vitals → Photos → Experience → Review).
-- Drag-and-drop photos or use the file picker; preview chips display selected files.
-- Validation occurs per step; the Review step summarizes data with edit anchors.
-
-## Comp Card Export
-
-### Client-side PDF
-
-1. Visit `/comp-card/?talent=elara` (replace `talent` with `marcus` for other data).
-2. Optional: append `&tier=pro` to remove the watermark.
-3. Click **Export PDF** to trigger the html2canvas + jsPDF pipeline.
-4. The file name follows `ZipSite_CompCard_{Name}.pdf` and includes PDF metadata.
-
-### Browser Print
-
-Use the **Print** link or the browser print dialog. The template is formatted for 5.5 × 8.5 in with 0.25 in margins and respects bleed/safe areas.
-
-### Server/Puppeteer Export
-
-1. Install dependencies: `npm install puppeteer`.
-2. Run the script:
+Or use Python:
 
 ```bash
-node scripts/render-pdf.js --talent=elara --tier=free --output=./Elara_Free.pdf
+python3 -m http.server 8000
 ```
 
-- `--tier=pro` removes the watermark.
-- Output defaults to `ZipSite_CompCard_{talent}_{tier}.pdf` in the current directory.
+Visit `http://localhost:8000/`.
 
-## Portfolio Template
+## Client-side comp card export
 
-The portfolio template (`/portfolio/`) consumes the same mock talent dataset. Pass a `talent` query parameter (`elara`, `marcus`, `ayla`, `noah`) to load different profiles. JSON-LD Person metadata is injected for SEO, and CTAs update automatically.
+1. Navigate to `/comp-card/` in the browser.
+2. Optionally pass query params to personalise: `?name=River%20King&stat=Height:6'1"&tier=pro`.
+3. Use the **Toggle Free / Pro** button to show or hide the watermark.
+4. Click **Download PDF**. html2canvas + jsPDF render the comp-card DOM into `ZipSite_CompCard_{Name}.pdf` with metadata (title, author, subject).
 
-## Accessibility & Motion
+## Server / CLI export with Puppeteer
 
-- Skip link, focus-visible states, and AA contrast-friendly palette.
-- Intersection Observer animates `.fade-in` blocks with a translate/opacity motion respecting `prefers-reduced-motion`.
-- Mobile navigation toggles with aria attributes and closes on link selection.
+The repository includes `scripts/render-pdf.js` for high-fidelity output (300 dpi equivalent).
 
-## Assets & Typography
+```bash
+npm install puppeteer
+node scripts/render-pdf.js "http://localhost:8000/comp-card/" ./out.pdf "Natan Barrera" pro
+```
 
-- Fonts: Playfair Display (serif display) + Inter (sans-serif UI) via Google Fonts.
-- Icons live under `assets/icons/` and are monochrome for theme consistency.
+Arguments:
 
-## Notes
+1. `comp-card` URL (must be reachable from the machine running Puppeteer).
+2. Optional path to save the PDF.
+3. Optional talent name for the filename and query string.
+4. Optional tier (`free` or `pro`).
 
-- Remote photography references Unsplash for cinematic placeholders.
-- All images use `loading="lazy"` and `decoding="async"` where applicable.
-- Update `assets/logo-zipsite.svg` if you have an official mark.
+The script honours the watermark logic (hidden for `pro`).
+
+## Application flow
+
+* `/apply/` hosts a four-step form with validation, drag-and-drop photo handling, and a review summary. 
+* Keyboard navigation is supported; the current step is marked with `aria-current="step"`.
+
+## Portfolio template
+
+* `/portfolio/` accepts `name`, `tier`, or a JSON-encoded `profile` query parameter to populate stats, gallery, and experience.
+* Images load lazily with skeleton placeholders.
+* Sticky CTAs provide **Download PDF** and **Book talent** actions.
+
+## Accessibility & motion
+
+* Skip link, focus-visible outlines, and high-contrast monochrome palette for AA compliance.
+* IntersectionObserver powers 200–320 ms fade/translate reveals while respecting `prefers-reduced-motion`.
+
+## Assets
+
+Remote photography references use royalty-free Unsplash links for prototyping. Replace with licensed agency assets before production.
