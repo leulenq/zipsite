@@ -3,6 +3,9 @@ const knex = require('../db/knex');
 async function attachLocals(req, res, next) {
   res.locals.currentUser = null;
   res.locals.currentProfile = null;
+  if (typeof res.locals.isDashboard === 'undefined') {
+    res.locals.isDashboard = false;
+  }
 
   if (req.session && req.session.userId) {
     try {

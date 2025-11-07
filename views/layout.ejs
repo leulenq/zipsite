@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= title ? `${title} — ZipSite` : 'ZipSite' %></title>
   <link rel="stylesheet" href="/styles/global.css">
-  <% if (isDashboard) { %>
+  <% const inDashboard = typeof isDashboard !== 'undefined' && isDashboard; %>
+  <% if (inDashboard) { %>
     <link rel="stylesheet" href="/styles/dashboard.css">
   <% } %>
 </head>
-<body class="app-shell <%= isDashboard ? 'is-dashboard' : 'is-public' %>">
+<body class="app-shell <%= inDashboard ? 'is-dashboard' : 'is-public' %>">
   <a class="skip-link" href="#main">Skip to content</a>
-  <% if (isDashboard) { %>
+  <% if (inDashboard) { %>
     <header class="shell-header dashboard-header" role="banner">
       <div class="dashboard-header__inner">
         <a class="brand" href="/">ZipSite</a>
@@ -81,12 +82,12 @@
     </header>
   <% } %>
 
-  <main id="main" class="main <%= isDashboard ? 'dashboard-main' : 'page-main' %>" role="main">
+  <main id="main" class="main <%= inDashboard ? 'dashboard-main' : 'page-main' %>" role="main">
     <%- include('partials/flash', { messages }) %>
     <%- body %>
   </main>
 
-  <% if (!isDashboard) { %>
+  <% if (!inDashboard) { %>
     <footer class="site-footer" role="contentinfo">
       <div class="container site-footer__inner">
         <p>© <%= new Date().getFullYear() %> ZipSite. Editorial-quality comp cards for modern talent.</p>
@@ -102,7 +103,7 @@
   <% } %>
 
   <script src="/scripts/wire.js" defer></script>
-  <% if (isDashboard) { %>
+  <% if (inDashboard) { %>
     <script src="/scripts/dashboard.js" defer></script>
   <% } %>
 </body>
